@@ -56,15 +56,15 @@ function BlogIntro() {
           data-aos="fade-up"
         >
           <Header3>
-            Explore the World of{" "}
-            <span className="text-primary text-center">Beauty</span> and
-            Wellness
+            Insights & Advice for Better{" "}
+            <span className="text-primary">Skincare</span>
           </Header3>
           <Paragraph1 className="max-w-[883px] text-center">
-            Welcome to our beauty blog, your go-to source for the latest
-            updates, tips, and trends in the world of beauty. Here, we celebrate
-            individuality and inspire confidence, elegance, and self-expression
-            in every glow.
+            Welcome to our blog — your resource for expert skincare insights,
+            product highlights, and wellness tips. From professional guidance
+            for spas and salons to everyday routines for individuals, we share
+            content designed to inform, inspire, and support every skincare
+            journey.
           </Paragraph1>
         </div>
         {/* data-aos="fade-right" */}

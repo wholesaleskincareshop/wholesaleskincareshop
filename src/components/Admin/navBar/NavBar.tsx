@@ -28,8 +28,12 @@ function NavBar() {
     <div className="bg-white fixed w-full border-b z-50">
       <div className="container1 py-[12px] w-full text-p_black">
         <div className="flex justify-between items-center">
-          <Link  href="/admin/dashboard">
-            <img src="/images/logo.png" alt="" className="h-[25px]" />
+          <Link href="/admin/dashboard">
+            <img
+              src="/logo1.jpg"
+              alt=""
+              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-lg"
+            />{" "}
           </Link>
           <div className="xl:flex gap-[24px] hidden"></div>
           <div className="xl:flex gap-[24px] hidden items-center">

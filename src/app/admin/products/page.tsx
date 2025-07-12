@@ -5,7 +5,7 @@ import React from 'react'
 
 function Products() {
   return (
-    <div className=" min-h-screen">
+    <div className=" min-h-screen ">
       <ProtectedRoute>
         <NavBar />
         <ProductsOverview />

@@ -486,35 +486,7 @@ const Checkout: React.FC<CheckoutProps> = ({
                   </div>
                 </div>
               </div>
-              <div>
-                <ParagraphLink2 className="block text-sm font-bold text-gray-700">
-                  Country
-                </ParagraphLink2>
-                <Field
-                  name="country"
-                  as="select"
-                  className="mt-1 block w-full p-2 border rounded-md"
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    handleCountryChange(
-                      e.target.value,
-                      setFieldValue,
-                      totalProductWeight
-                    )
-                  }
-                >
-                  <option value="">Select Country</option>
-                  {countries.map((country) => (
-                    <option key={country.code} value={country.code}>
-                      {country.name}
-                    </option>
-                  ))}
-                </Field>
-                <ErrorMessage
-                  name="country"
-                  component="div"
-                  className="text-red-500 text-sm"
-                />
-              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <ParagraphLink2 className="block text-sm font-bold text-gray-700">
@@ -544,6 +516,35 @@ const Checkout: React.FC<CheckoutProps> = ({
                     className="text-red-500 text-sm"
                   />
                 </div>
+              </div>
+              <div>
+                <ParagraphLink2 className="block text-sm font-bold text-gray-700">
+                  Country
+                </ParagraphLink2>
+                <Field
+                  name="country"
+                  as="select"
+                  className="mt-1 block w-full p-2 border rounded-md"
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    handleCountryChange(
+                      e.target.value,
+                      setFieldValue,
+                      totalProductWeight
+                    )
+                  }
+                >
+                  <option value="">Select Country</option>
+                  {countries.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.name}
+                    </option>
+                  ))}
+                </Field>
+                <ErrorMessage
+                  name="country"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
               </div>
               <div>
                 <ParagraphLink2 className="block text-sm font-bold text-gray-700">

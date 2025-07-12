@@ -66,11 +66,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
         <div className=" flex flex-col justify-center border-t pt-2 items-center   ga -rounded-lg  bg-white bg-opacity-65">
-          <p className=" font-medium text-center pb-2  whitespace-nowrap w-[100%] truncate overflow-hidden">
+          <p className=" font-medium  pb-2  whitespace-nowrap w-[100%] truncate overflow-hidden">
             {" "}
             {title}{" "}
           </p>
 
+          <p className=" pb-2  whitespace-nowrap w-[100%] truncate  ">
+            No. Sold: {product.numberSold || "0"}
+          </p>
           <button className="whitespace-nowrap text-[13px] flex justify-center py-1 bg-primary hover:bg-black rounded-lg w-full  text-white ">
             <p>{`₦ ${new Intl.NumberFormat("en-US", {}).format(
               Number(price)

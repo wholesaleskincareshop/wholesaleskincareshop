@@ -25,24 +25,25 @@ const Section3: React.FC<Section3Props> = ({ latestProducts }) => {
   return (
     <div>
       {" "}
-      <div className=" container1 pt-[34px] xl:pt-[50px]  text-p_black">
+      <div className=" container1 py-[34px] xl:py-[50px]  text-p_black">
         {" "}
         <div
-          className=" flex xl:gap-[24px] flex-col text-center items-center w-full mb-[24px] xl:mb-[64px]"
+          className=" flex xl:gap-[24px] flex-col sm:text-center sm:items-center w-full mb-[24px] xl:mb-[64px]"
           // data-aos="fade-up"
         >
           <Header3>
-            Our Newest <span className="text-primary">Beauty</span> Essentials
-          </Header3>{" "}
-          <Paragraph1 className="max-w-[883px] text-center">
-            Handpicked just for you, these products are here to elevate your
-            routine and keep you at the forefront of beauty trends.
+            Newest <span className="text-primary">Skincare</span> Essentials
+          </Header3>
+          <Paragraph1 className="max-w-[883px] sm:flex hidden">
+            Explore our latest arrivals — carefully selected for their
+            effectiveness, quality ingredients, and value for professionals and
+            skincare enthusiasts alike.
           </Paragraph1>
         </div>
-        <div className="xl:flex grid grid-cols-2 items-center xl:overflow-y-auto scrollbar-hide   gap-2 [24px] xl:gap-4 [30px]">
+        <div className=" grid grid-cols-2 sm:grid-cols-4 items-center scrollbar-hide gap-2 sm:gap-[24px]">
           {latestProducts && latestProducts.length > 0
             ? latestProducts.slice(0, 8).map((product: any) => (
-                <div className=" xl:w-[200px]">
+                <div className=" ">
                   <ProductCard
                     key={product.id}
                     image={product.productImageURL1}

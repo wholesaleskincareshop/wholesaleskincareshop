@@ -23,14 +23,18 @@ function Footer() {
           : " bg-white sm:py-[100px]-"
       }
     >
-      <div className="  bg-[#4A4A4A]  ">
+      <div className="  bg-black [#4A4A4A]  ">
         <div className=" container1 py-[32px] sm:py-[40px] ">
           {/* desktop */}
           <div className="sm:flex hidden items-start justify-between mb-[30px]">
-            <div className="w-[200px] relative hidden">
-              <img src="/images/logo2.png" alt="photographer" />
+            <div className="w-[100px] relative  ">
+              <img
+                src="/logo.jpg"
+                alt="photographer"
+                className=" rounded-full"
+              />
             </div>
-            <div className=" flex gap-[48px]">
+            <div className="  gap-[28px] grid grid-cols-2  ">
               <Link href="/">
                 <ParagraphLink1
                   className={
@@ -144,7 +148,7 @@ function Footer() {
                   />
                 </svg>
 
-                <Paragraph2> grandiosegrin@gmail.com</Paragraph2>
+                <Paragraph2> wholesaleskincareshopp@gmail.com</Paragraph2>
               </div>
               <div className=" flex items-center gap-2 text-[#ECECEC] ">
                 <svg
@@ -162,11 +166,9 @@ function Footer() {
                   />
                 </svg>
 
-                <Paragraph2> +234 707 832 8640</Paragraph2>
+                <Paragraph2> +2348140926533</Paragraph2>
               </div>
             </div>
-          </div>
-          <div className=" sm:flex justify-center items-center hidden py-4">
             <div className=" py-2 px-4 rounded-lg bg-white flex justify-center items-center gap-2 flex-col">
               <p className=" text-[12px]  ">
                 {" "}
@@ -188,6 +190,7 @@ function Footer() {
               </div>
             </div>
           </div>
+          <div className=" sm:flex justify-center items-center hidden py-4"></div>
 
           {/* mobile  */}
           <div className=" mb-[24px] sm:hidden sm:mb-[110px]">
@@ -267,7 +270,7 @@ function Footer() {
                     />
                   </svg>
 
-                  <Paragraph2> grandiosegrin@gmail.com</Paragraph2>
+                  <Paragraph2> wholesaleskincareshopp@gmail.com</Paragraph2>
                 </div>
                 <div className=" flex items-center gap-2 text-[#ECECEC] ">
                   <svg
@@ -285,7 +288,7 @@ function Footer() {
                     />
                   </svg>
 
-                  <Paragraph2> +234 707 832 8640</Paragraph2>
+                  <Paragraph2> +2348140926533</Paragraph2>
                 </div>
               </div>
             </div>
@@ -324,7 +327,7 @@ function Footer() {
               </div>
             </div>
             <ParagraphLink2 className=" text-[14px] text-[#ECECEC] ">
-              © 2024 GrandioseGrin Ltd. All rights reserved.
+              © 2024 Wholesale Skincare Shop Ltd. All rights reserved.
             </ParagraphLink2>
             <div className="flex flex-wrap gap-[24px] items-center">
               <Link href="/privacy-policy" className="">

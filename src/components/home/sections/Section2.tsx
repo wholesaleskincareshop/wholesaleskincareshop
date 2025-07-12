@@ -26,26 +26,26 @@ const Section2: React.FC<Section2Props> = ({ featuredProducts }) => {
 
   return (
     <div>
-      <div className=" container1 pt-[24px] - xl:pt-[50px] -  text-p_black">
+      <div className=" container1 pt-[24px] - xl:pt-[30px] -  text-p_black">
         {" "}
         <div
-          className=" flex flex-col gap-[8px] xl:gap-[24px] text-center items-center w-full mb-[24px] xl:mb-[24px]-"
+          className=" flex flex-col gap-[8px] xl:gap-[4px] sm:text-center sm:items-center w-full mb-[24px] xl:mb-[24px]-"
           // data-aos="fade-up"
         >
           <Header3>
-            Our <span className="text-primary">Featured</span> Products
+            <span className="text-primary">Featured</span> Products
           </Header3>
-          <Paragraph1 className="max-w-[883px] text-center">
-            Each product is carefully selected to celebrate your unique beauty,
-            empowering you to express yourself with confidence, elegance, and
-            radiance.
+          <Paragraph1 className="max-w-[883px] sm:flex hidden">
+            Explore our top-selling skincare essentials — handpicked for spas,
+            salons, and individuals seeking trusted, high-performance formulas
+            for every skin type and routine.
           </Paragraph1>
         </div>
         {/* data-aos="fade-right" */}
-        <div className="xl:flex grid grid-cols-2 items-center xl:overflow-y-auto scrollbar-hide   gap-2 [24px] xl:gap-4 [30px]">
+        <div className=" grid grid-cols-2 sm:grid-cols-4 items-center scrollbar-hide gap-2   sm:gap-[24px]">
           {featuredProducts && featuredProducts.length > 0
             ? featuredProducts.slice(0, 8).map((product: any) => (
-                <div className=" xl:w-[200px]">
+                <div className=" ">
                   <ProductCard
                     key={product.id}
                     image={product.productImageURL1}

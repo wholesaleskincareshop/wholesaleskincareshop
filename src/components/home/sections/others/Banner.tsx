@@ -53,13 +53,13 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
 
   return (
     <div className="relative container1">
-      <div className="w-[100%] relative sm:h-[350px] h-[250px] border border-primary   rounded-lg mx-auto overflow-hidden rou">
+      <div className="w-[100%] relative sm:h-[350px] h-[200px] border    rounded-lg mx-auto overflow-hidden rou">
         {images.map((image, index) => (
           <img
             key={index}
             src={image.src}
             alt={`Banner ${index + 1}`}
-            className={`absolute top-0 left-0 w-[100%] mx-auto sm:h-[350px] opacity-85 h-[250px] transition-transform duration-500 ${
+            className={`absolute top-0 left-0 w-[100%] mx-auto sm:h-[350px] opacity-85 h-[200px] transition-transform duration-500 ${
               index === currentIndex ? "translate-x-0" : "translate-x-full"
             }`}
           />
@@ -68,7 +68,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
       <div className="flex justify-between items-center mt-2">
         <button
           onClick={prevSlide}
-          className="absolute sm:-left-4 - left-2 top-1/2 transform -translate-y-1/2 text-bg_gray bg-black bg-opacity-60 p-1 font-bold rounded-full"
+          className="absolute sm:left-6 - left-6 top-1/2 transform -translate-y-1/2 text-bg_gray bg-black bg-opacity-20 p-1 font-bold rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
         </button>
         <button
           onClick={nextSlide}
-          className="absolute bg-black bg-opacity-60 - right-2 sm:-right-4 top-1/2 transform -translate-y-1/2  text-bg_gray p-1 font-bold rounded-full"
+          className="absolute bg-black bg-opacity-20 - right-6 sm:right-6 top-1/2 transform -translate-y-1/2  text-bg_gray p-1 font-bold rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -105,11 +105,11 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
           </svg>
         </button>
       </div>
-      <div className="flex justify-center pb-2">
+      {/* <div className="flex justify-center pb-2">
         {images.map((_, index) => (
           <DotIndicator key={index} active={index === currentIndex} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

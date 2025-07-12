@@ -18,11 +18,11 @@ function SearchBar({ }: SearchBarProps) {
 
   return (
     <div>
-      <div className="flex justify-between items-center p-2 px-3 bg-bg_gray rounded-lg w-full [250px] cursor-pointer">
+      <div className="flex justify-between borde items-center p-2 px-3 bg-white rounded-lg w-full [250px] cursor-pointer">
         <input
           type="text"
           placeholder="Search for a product..."
-          className="flex-grow outline-none bg-bg_gray text-gray-700"
+          className="flex-grow outline-none bg-white text-gray-700"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyPress}

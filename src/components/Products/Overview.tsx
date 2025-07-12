@@ -3,7 +3,7 @@ import ShopFront from "./ShopFront";
 
 function Overview() {
   return (
-    <div>
+    <div className="bg-gray-100">
       <ShopFront />
       {/* <Section6 /> */}
     </div>

@@ -30,7 +30,7 @@ const HotLines = () => {
   ];
 
   return (
-    <div className="bg-[#f8f5c9] py-12">
+    <div className="bg-gray-50 [#f8f5c9] py-12">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <Header3 className="text-3xl font-bold text-gray-800 mb-8">
           Have any queries?{" "}

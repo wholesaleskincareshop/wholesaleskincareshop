@@ -1,5 +1,5 @@
 import React from "react";
-import { Paragraph2, ParagraphLink2 } from "../Text";
+import { Paragraph1, Paragraph2, ParagraphLink2 } from "../Text";
 import Button from "../Button";
 import Link from "next/link";
 import useCartStore from "../../stores/cartStore";
@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const currencySymbol = selectedCurrency === "USD" ? "$" : "₦";
 
   const formattedPrice =
-    selectedCurrency === "USD"
+    selectedCurrency === "USD" && typeof displayPrice === "number"
       ? displayPrice.toFixed(2) // Format for USD with 2 decimal places
       : displayPrice; // Format for NGN (comma-separated)
 
@@ -53,9 +53,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {product.isPublish && (
         <div
           // data-aos="fade-up"
-          className={`max-w-full bg-white rounded-lg  overflow-hidden hover:shadow-xl transition-shadow duration-300 `}
-        > 
-          <div className="bg-white relative p-2 hover:border-primary overflow-hidden  rounded-lg ">
+          className={`max-w-full border bg-white rounded-[24px]  overflow-hidden hover:shadow-xl transition-shadow duration-300 `}
+        >
+          <div className="bg-white relative hover:border-primary overflow-hidden  rounded-lg ">
             <Link href={`/products/${productID}`}>
               {" "}
               <img
@@ -65,29 +65,28 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     : "/images/default-product.png"
                 }
                 alt={title}
-                className="w-full h-[120px] object-cover rounded-lg hover:scale-110 transition-transform duration-300 "
+                className="w-full h-[150px] object-cover  hover:scale-110 transition-transform duration-300 "
               />
             </Link>
-            <div className=" flex flex-col justify-center border-t- pt-2 items-center   ga -rounded-lg  bg-white bg-opacity-65">
-              <p className=" text-[13px] xl:text-[14px] font-medium text-center  whitespace-nowrap w-[100%] truncate overflow-hidden">
+            <div className=" flex flex-col  p-2 items-center   bg-white bg-opacity-65">
+              <Paragraph1 className=" font-medium w-[100%] whitespace-nowrap truncate overflow-hidden">
                 {" "}
                 {title}{" "}
-              </p>
-              <Paragraph2>{`${currencySymbol} ${new Intl.NumberFormat(
+              </Paragraph1>
+              <Paragraph1 className=" flex w-full">{`${currencySymbol} ${new Intl.NumberFormat(
                 "en-US",
                 {}
-              ).format(Number(formattedPrice))}`}</Paragraph2>
+              ).format(Number(formattedPrice))}`}</Paragraph1>
               {product.availableAmount === "0" ? (
-                <div className=" flex px-2 text-[13px] justify-center py-1 sm:hidden- w-full items-center rounded-lg bg-black text-white text-center">
+                <div className=" flex px-2  justify-center py-1 sm:hidden- w-full items-center rounded-lg bg-black text-white text-center">
                   Out of Stock
                 </div>
               ) : (
-                <button
+                <Button
+                  text="Add to Cart"
                   onClick={handleAddToCart}
-                  className="whitespace-nowrap font-semibold   flex justify-center py-1 bg-primary hover:bg-black rounded-lg w-full  text-white "
-                >
-                  <ParagraphLink2>Add to Cart</ParagraphLink2>
-                </button>
+                  additionalClasses="border-white justify-center flex text-center whitespace-nowrap font-semibold bg-primary w-full"
+                />
               )}{" "}
             </div>
           </div>

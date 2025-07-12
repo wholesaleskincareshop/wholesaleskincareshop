@@ -26,8 +26,9 @@ const CurrencySwitcher = () => {
         className="flex gap-2 items-center cursor-pointer"
         onClick={toggleDropdown}
       >
+        {" "}
+        <ParagraphLink1>Currency: </ParagraphLink1>
         <ParagraphLink1>{selectedCurrency}</ParagraphLink1>
-
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -47,16 +48,16 @@ const CurrencySwitcher = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute bg-white p-2 px-4 rounded-lg shadow-md">
+        <div className="absolute bg-white p-2 px-4 rounded-lg shadow-md flex flex-col right-0">
           <button onClick={() => handleSelectCurrency("NGN")}>
             <ParagraphLink1 className="cursor-pointer hover:text-primary">
-              NGN
+              NGN (N)
             </ParagraphLink1>
           </button>
 
           <button onClick={() => handleSelectCurrency("USD")}>
             <ParagraphLink1 className="cursor-pointer hover:text-primary">
-              USD
+              USD ($)
             </ParagraphLink1>
           </button>
         </div>

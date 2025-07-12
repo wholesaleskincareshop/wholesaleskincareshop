@@ -24,7 +24,7 @@ const ProductCartCard: React.FC<ProductCartCardProps> = ({
   const currencySymbol = selectedCurrency === "USD" ? "$" : "₦";
 
   const formattedPrice =
-    selectedCurrency === "USD"
+    selectedCurrency === "USD" && typeof displayPrice === "number"
       ? displayPrice.toFixed(2) // Format for USD with 2 decimal places
       : displayPrice; // Format for NGN (comma-separated)
 

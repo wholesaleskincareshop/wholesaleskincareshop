@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
-import { Header1, Header1Plus, Header3, Paragraph3 } from "@/components/Text";
+import { Header1, Header1Plus, Header3, Paragraph1, Paragraph3 } from "@/components/Text";
 import React from "react";
 import AOS from "aos";
 
@@ -20,17 +20,21 @@ function HeroSection() {
         >
           <div className=" flex flex-col xl:w-[60%] w-full xl:space-y-[24px] ">
             <Header3 className="text-white col-span-1">
-              Discover the beauty of self-care with
-              <span className="border-primary  "> GrandioseGrin's </span>{" "}
-              premium cosmetics.
+              Discover the power of self-care with
+              <span className="border-primary">
+                {" "}
+                professional skincare{" "}
+              </span>{" "}
+              solutions.
             </Header3>
-            <Paragraph3 className="xl:mt-[16px] mb-[24px] xl:mb-[48px] text-white">
-              At GrandioseGrin, we celebrate your unique beauty, offering
-              products that nourish, inspire, and enhance your natural glow.
-            </Paragraph3>
+            <Paragraph1 className="xl:mt-[16px] mb-[24px] xl:mb-[48px] text-white">
+              We offer carefully formulated products that support healthy,
+              radiant skin — trusted by estheticians, spas, and skincare
+              enthusiasts alike.
+            </Paragraph1>
 
             <Button
-              text="Start Your Beauty Journey"
+              text="Explore Our Product Range"
               href="/products"
               isLink={true}
               additionalClasses="border-primary xl:w-fit w-full  "
@@ -40,10 +44,10 @@ function HeroSection() {
 
         {/* Background image overlay */}
         <div
-          className="absolute inset-0 bg-cover xl:-top-[100px] xl:-left-[0px] -left-[150px] -top-[24px] bg-center- z-0"
+          className="absolute inset-0 bg-cover xl:-top-[200px] xl:-left-[0px] -left-[10px] -top-[24px] bg-center- z-0"
           style={{
             backgroundImage:
-              "url('https://res.cloudinary.com/dtipo8fg3/image/upload/v1731517423/istockphoto-637324230-612x612as_w7eazz.jpg')",
+              "url('https://res.cloudinary.com/dqziqldkb/image/upload/v1752225666/Gemini_Generated_Image_kprwi0kprwi0kprw_1_vrn0v4.png')",
           }}
         ></div>
         {/* Dark overlay for the background image */}

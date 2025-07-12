@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProps> = ({
   additionalClasses = "",
   icon, // Destructure the icon prop
 }) => {
-  const commonClasses = `relative font-semibold overflow-hidden group ${backgroundColor} ${color} ${border} ${body_Font.className} px-[24px] py-[10px] font-medium  text-[13px] sm:text-[14px]  rounded-lg cursor-pointer text-center ${additionalClasses}`;
+  const commonClasses = `relative font-semibold overflow-hidden group ${backgroundColor} ${color} ${border} ${body_Font.className} px-[24px] py-[10px] font-medium  text-[14px] sm:text-[16px]  rounded-full cursor-pointer text-center ${additionalClasses}`;
 
   const hoverEffectClasses =
     "absolute inset-0 bg-black g -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out";

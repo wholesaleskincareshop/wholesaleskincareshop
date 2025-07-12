@@ -209,15 +209,13 @@ function ProductSections() {
           <div>
             <Header4>All Products</Header4>
           </div>
-          <div className=" grid grid-cols-1 xl:grid-cols-6 gap-4">
-            <div className=" xl:flex hidden border-r">
-              <CategorySelector
-                categories={categories}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                closeMenu={() => setIsCOpen(false)} // Pass the close function
-              />
-            </div>
+          <div className=" gap-4 mt-8">
+            <CategorySelector
+              categories={categories}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              closeMenu={() => setIsCOpen(false)} // Pass the close function
+            />
 
             <div className=" xl:col-span-5">
               <div className=" mb-4  pt-2">

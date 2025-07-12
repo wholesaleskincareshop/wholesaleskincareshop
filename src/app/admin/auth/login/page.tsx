@@ -6,7 +6,7 @@ function page() {
   return (
     <div><LoginForm />
       {/* uncomment the signUp form to create an admin account hide it back */}
-      {/* <SignUpForm /> */}
+      <SignUpForm />
       </div>
   )
 }

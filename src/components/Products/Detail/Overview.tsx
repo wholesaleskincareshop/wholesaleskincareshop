@@ -2,7 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import ProductCard from "../ProductCard";
-import { Header4, Header5, ParagraphLink1 } from "@/components/Text";
+import {
+  Header3,
+  Header4,
+  Header5,
+  Paragraph2,
+  ParagraphLink1,
+} from "@/components/Text";
 import Button from "@/components/Button";
 import Section6 from "@/components/home/sections/Section6";
 import { useParams } from "next/navigation";
@@ -19,6 +25,8 @@ import useCartStore from "@/stores/cartStore";
 import { useExchangeRateStore } from "@/stores/exchangeRateStore";
 import Link from "next/link";
 import CopyUrlButton from "./CopyUrlButton";
+import { MinusIcon, Package, Plus } from "lucide-react";
+import QuantitySelector from "./QuantitySelector";
 
 interface Product {
   id: string;
@@ -45,6 +53,15 @@ const ProductDetail = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const toggleCart = useCartStore((state) => state.toggleCart);
   const { selectedCurrency, exchangeRate } = useExchangeRateStore();
+
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+
+
+  
+  const handleTotalQuantityChange = (total: number) => {
+    console.log("Total quantity:", total);
+    setSelectedQuantity(total); // Save total quantity selected
+  };
 
   useEffect(() => {
     if (!productID) return;
@@ -97,7 +114,7 @@ const ProductDetail = () => {
   const randomProducts = shuffledProducts.slice(0, 4);
 
   const handleAddToCart = () => {
-    addToCart(productID); // Just pass the ID
+    addToCart(productID, selectedQuantity); // Pass selected quantity
     // @ts-ignore
     toggleCart(true); // Ensure the cart is open
   };
@@ -119,12 +136,12 @@ const ProductDetail = () => {
   const currencySymbol = selectedCurrency === "USD" ? "$" : "₦";
 
   const formattedPrice =
-    selectedCurrency === "USD" && displayPrice !== undefined
+    selectedCurrency === "USD" && typeof displayPrice === "number"
       ? displayPrice.toFixed(2) // Format for USD with 2 decimal places
       : displayPrice; // Format for NGN (comma-separated)
 
   const formattedPrice2 =
-    selectedCurrency === "USD" && displayPrice2 !== undefined
+    selectedCurrency === "USD" && typeof displayPrice2 === "number"
       ? displayPrice2.toFixed(2) // Format for USD with 2 decimal places
       : displayPrice2; // Format for NGN (comma-separated)
 
@@ -139,8 +156,8 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <div className="container  px-4 py-[100px]">
-        <div className="grid grid-cols-1 sm:grid-cols-5 gap-8 bg-white p-2 py-4 sm:p-8 rounded-lg">
+      <div className="container1  py-[70px]">
+        <div className="grid grid-cols-1 sm:grid-cols-6 gap-8 bg-white py-4 sm:py-8 rounded-lg">
           {/* Right section - Product Images */}
           <div className="sm:col-span-3">
             <div className="w-full sm:h-[500px] rounded-lg mb-4 flex items-center justify-center">
@@ -150,7 +167,7 @@ const ProductDetail = () => {
                   "/upload/w_1000,f_auto/"
                 )}
                 alt="Selected Product"
-                className="max-h-full w-full rounded-lg object-contain"
+                className="max-h-full sm:h-screen h-[300px] w-full rounded-lg object-cover"
               />
             </div>
             <div className="flex gap-2 w-full overflow-hidden overflow-x-auto scrollbar-hide p-1">
@@ -173,67 +190,18 @@ const ProductDetail = () => {
           </div>
 
           {/* Left section - Product Details */}
-          <div className="sm:col-span-2">
-            <Header4>{product.name}</Header4>
-            <div className="flex items-center  gap-4 py-2">
-              <Header5>
-                {`${currencySymbol} ${new Intl.NumberFormat("en-US", {}).format(
-                  Number(formattedPrice)
-                )}`}
-              </Header5>
-              {product.oldPrice && (
-                <p className="text-[12px] text-gray-700  sm:mb-0 line-through">
-                  {`${currencySymbol} ${new Intl.NumberFormat(
-                    "en-US",
-                    {}
-                  ).format(Number(formattedPrice2))}`}
-                </p>
-              )}
-            </div>
-            <div className=" flex justify-between sm:hidden my-2 gap-2 items-center">
-              {product.availableAmount === "0" ? (
-                <div className="py-2 flex w-full justify-center items-center rounded-lg bg-black text-white text-center">
-                  Out of Stock
-                </div>
-              ) : (
-                <Button
-                  text="Add to Cart"
-                  onClick={handleAddToCart}
-                  additionalClasses="border-white bg-black w-full flex justify-center "
-                />
-              )}
+          <div className="sm:col-span-3">
+            <Header3>{product.name}</Header3>
 
-              <CopyUrlButton />
-            </div>
-            <hr className="mb-6" />
+            <Paragraph2 className=" mb-4 mt-2">
+              Avaliable quantity: {product.availableAmount}{" "}
+            </Paragraph2>
 
-            <div className=" flex gap-2 mb-4 text-gray-600 text-[12px]">
-              <p>Available Quantity:</p> <p>{product.availableAmount}</p>
-            </div>
-            <ParagraphLink1 className="font-medium">Description</ParagraphLink1>
-
-            <p className="text-gray-600 mb-6 text-justify hidden">
-              Glow HalfCast Extra Fairness Lotion is a premium skincare product
-              designed to enhance skin radiance, even out complexion, and
-              provide intense hydration. This lotion typically includes
-              ingredients known for their skin-brightening properties, such as
-              natural extracts, vitamins, and antioxidants, to promote a glowing
-              and youthful appearance. <br /> <br /> Its benefits may include:
-              Skin Brightening: Helps lighten dark spots and even out uneven
-              skin tone. Hydration: Moisturizes the skin, leaving it soft,
-              smooth, and supple. <br /> <br /> Glow Boosting: Enhances natural
-              skin radiance for a luminous look. This product is often
-              recommended for people seeking extra fairness or a lighter
-              complexion, but it's important to check if it aligns with your
-              skin type and preferences. Regular use, along with sunscreen, can
-              maximize its effects while protecting your skin.
-            </p>
-            <p
-              className="text-gray-600 mb-6 text-justify"
-              dangerouslySetInnerHTML={{
-                __html: product.description.replace(/\n/g, "<br />"),
-              }}
-            ></p>
+            <QuantitySelector
+              product={product}
+              currencySymbol={currencySymbol}
+              onTotalQuantityChange={handleTotalQuantityChange}
+            />
             <div className=" flex justify-between gap-2 items-center">
               {product.availableAmount === "0" ? (
                 <div className="py-2 flex w-full justify-center items-center rounded-lg bg-black text-white text-center">
@@ -249,7 +217,6 @@ const ProductDetail = () => {
 
               <CopyUrlButton />
             </div>
-
             <div className="mt-6 text-gray-600  flex flex-co items-center justify-center">
               <p>
                 We'd love to also hear your thoughts on this product.{" "}
@@ -262,6 +229,18 @@ const ProductDetail = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="">
+          <Header4 className="font-medium">Description</Header4>
+          <hr className="mb-4" />
+
+          <p
+            className="text-gray-600 mb-6 text-justify"
+            dangerouslySetInnerHTML={{
+              __html: product.description.replace(/\n/g, "<br />"),
+            }}
+          ></p>
         </div>
 
         {/* Related Products Section */}

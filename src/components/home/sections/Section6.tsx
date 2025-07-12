@@ -24,18 +24,19 @@ function section6() {
         {" "}
         <div className="flex flex-col xl:gap-[24px] items-center w-full text-center pb-[64px]">
           <Header1Plus>
-            Discover Your Best <span className="text-primary">Self</span> with
-            GrandioseGrin
+            Discover Your Best <span className="text-primary">Skin</span> with
+            Us
           </Header1Plus>
           <Paragraph1 className="max-w-[883px] text-center">
-            Have questions or need guidance? Our team is here to help you find
-            the perfect products for your beauty journey.
+            Have questions or need help choosing the right products? Our team is
+            here to support both skincare professionals and individuals in
+            finding exactly what they need.
           </Paragraph1>
           <Button
             text="Contact Us Today"
             href="/contact-us"
             isLink={true}
-            additionalClasses="border-white mt-[24px] xl:mt-[48px] w-fit "
+            additionalClasses="border-white mt-[14px] w-fit "
           />
         </div>
       </div>

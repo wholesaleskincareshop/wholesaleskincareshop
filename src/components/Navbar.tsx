@@ -63,9 +63,9 @@ function Navbar() {
           </div>
           <Link href="/">
             <img
-              src="/images/logo.png"
+              src="/logo1.jpg"
               alt=""
-              className="h-[20px] xl:flex hidden-"
+              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-lg"
             />
             {/* <img
               src="/images/logo3.png"
@@ -78,7 +78,7 @@ function Navbar() {
             <div className=" border-2 border-primary rounded-full w-2 h-2 p- absolute top-1 -left-1 "></div>
             <HeaderAny className=" text-[24px]">GrandioseGrin</HeaderAny>{" "}
           </div> */}
-          <div className="  gap-[48px] items-center hidden lg:flex">
+          <div className="  gap-[38px] items-center hidden lg:flex">
             <Link href="/">
               <ParagraphLink1
                 className={pathname === "/" ? "text-primary font-bold " : " "}

@@ -9,7 +9,7 @@ interface CartItem {
 interface CartState {
   cart: CartItem[];
   cartOpen: boolean;
-  addToCart: (id: string) => void;
+  addToCart: (id: string, quantity?: number) => void; // <-- accept quantity
   removeFromCart: (id: string) => void;
   clearCart: () => void;
   toggleCart: (isOpen?: boolean) => void;
@@ -20,19 +20,22 @@ const useCartStore = create<CartState>()(
     (set) => ({
       cart: [],
       cartOpen: false,
-      addToCart: (id: string) =>
+      addToCart: (id: string, quantity: number = 1) =>
         set((state) => {
           const existingItem = state.cart.find((item) => item.id === id);
           if (existingItem) {
             return {
               cart: state.cart.map((item) =>
-                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+                item.id === id
+                  ? { ...item, quantity: item.quantity + quantity }
+                  : item
               ),
             };
           } else {
-            return { cart: [...state.cart, { id, quantity: 1 }] };
+            return { cart: [...state.cart, { id, quantity }] };
           }
         }),
+
       removeFromCart: (id: string) =>
         set((state) => ({
           cart: state.cart.filter((item) => item.id !== id),

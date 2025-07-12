@@ -455,7 +455,7 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
                     </div>
                     <div className=" grid grid-cols-2 gap-2">
                       <div>
-                        <label>Current Price</label>
+                        <label>Single Price</label>
                         <Field name="currentPrice">
                           {({ field, form }: FieldProps<string>) => (
                             <input
@@ -481,7 +481,7 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
                         />
                       </div>
                       <div>
-                        <label>Old Price</label>
+                        <label>Bulk Price</label>
                         <Field name="oldPrice">
                           {({ field, form }: FieldProps<string>) => (
                             <input
@@ -597,42 +597,7 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
                         className="text-red-500 text-[12px]"
                       />
                     </div>
-                    <div>
-                      <label>Sub Category</label>
-                      {loadingCategories ? (
-                        <p>Loading sub categories...</p>
-                      ) : (
-                        <Field
-                          as="select"
-                          name="sub_category"
-                          className="w-full border border-primary p-2 rounded-lg my-2"
-                          onChange={(
-                            e: React.ChangeEvent<HTMLSelectElement>
-                          ) => {
-                            const selectedSubCategory = subCategories.find(
-                              (subCat) => subCat.id === e.target.value
-                            );
-                            setFieldValue("sub_category", e.target.value); // Optional: Store ID for convenience
-                            setFieldValue(
-                              "selectedSubCategory",
-                              selectedSubCategory || {}
-                            ); // Store the full object
-                          }}
-                        >
-                          <option value="" label="Select sub category" />
-                          {subCategories.map((subCategory) => (
-                            <option key={subCategory.id} value={subCategory.id}>
-                              {subCategory.name}
-                            </option>
-                          ))}
-                        </Field>
-                      )}
-                      <ErrorMessage
-                        name="category"
-                        component="div"
-                        className="text-red-500 text-[12px]"
-                      />
-                    </div>
+                   
                     <div>
                       <label>Description</label>
                       <Field
@@ -660,18 +625,8 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
                       <Field type="checkbox" name="isTrending" />
                       <label>Trending Product</label>
                     </div>
-                    <div className="flex items-center gap-2 my-2">
-                      <Field type="checkbox" name="isElite" />
-                      <label>Single Products</label>
-                    </div>
-                    <div className="flex items-center gap-2 my-2">
-                      <Field type="checkbox" name="isSpecial" />
-                      <label>Special Product</label>
-                    </div>
-                    <div className="flex items-center gap-2 my-2">
-                      <Field type="checkbox" name="isBudget" />
-                      <label>Wholesale and Bulk Products</label>
-                    </div>
+                   
+                    
                     <div className="flex justify-between">
                       <button
                         type="button"

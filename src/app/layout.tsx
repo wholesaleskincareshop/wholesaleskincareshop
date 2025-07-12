@@ -20,49 +20,50 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "GrandioseGrin Cosmetics - Radiant Beauty, Timeless Elegance",
+  title: "Wholesale Skincare Shop - Quality Products for All",
   description:
-    "Explore premium cosmetics and beauty products at GrandioseGrin. Elevate your beauty routine with our carefully selected makeup, skincare, and fragrance collections.",
+    "Shop high-quality skincare products trusted by spas and salons. Whether you're buying in bulk or for personal use, find effective, science-backed skincare at great prices.",
   generator:
-    "GrandioseGrin, cosmetics, beauty products, skincare, makeup, fragrance, online beauty store",
+    "wholesale skincare, spa skincare, salon supplies, bulk beauty products, science-backed skincare, B2B skincare store, skincare for estheticians, skincare for resellers",
   keywords: [
-    "cosmetics",
-    "beauty products",
-    "skincare",
-    "makeup",
-    "fragrance",
-    "luxury beauty",
-    "online beauty store",
-    "premium cosmetics",
-    "beauty essentials",
-    "GrandioseGrin",
+    "wholesale skincare",
+    "bulk skincare",
+    "spa skincare",
+    "salon skincare supplies",
+    "science-backed skincare",
+    "skincare for estheticians",
+    "retail skincare",
+    "skincare shop",
+    "B2B beauty store",
+    "dermatologist-grade skincare",
   ],
-  applicationName: "GrandioseGrin Cosmetics",
+  applicationName: "Wholesale Skincare Shop",
   openGraph: {
-    title: "GrandioseGrin Cosmetics - Radiant Beauty, Timeless Elegance",
+    title: "Wholesale Skincare Shop - Spa-Quality Products for All",
     description:
-      "Discover the best in beauty with GrandioseGrin Cosmetics. Shop our curated collection of makeup, skincare, and fragrances to enhance your natural radiance.",
-    url: "https://www.grandiosegrin.com",
-    siteName: "GrandioseGrin Cosmetics",
+      "Explore curated skincare trusted by estheticians, spas, and salons. Shop bulk or retail with tiered pricing and expert-grade formulas for every skin type.",
+    url: "https://www.wholesaleskincareshop.com",
+    siteName: "Wholesale Skincare Shop",
     images: [
       {
-        url: "https://res.cloudinary.com/dtipo8fg3/image/upload/v1731517339/istockphoto-1430775999-612x612_ruzqva.jpg",
+        url: "https://res.cloudinary.com/dtipo8fg3/image/upload/v1731517339/skincare-wholesale-cover.jpg",
         width: 1200,
         height: 630,
-        alt: "GrandioseGrin Cosmetics - Radiant beauty products",
+        alt: "Spa-quality skincare products for businesses and individuals",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@grandiosegrin",
-    title: "GrandioseGrin Cosmetics - Radiant Beauty, Timeless Elegance",
+    site: "@wholesaleskinshop",
+    title: "Wholesale Skincare Shop - Spa-Quality Products for All",
     description:
-      "Enhance your beauty with premium skincare, makeup, and fragrances from GrandioseGrin.",
+      "Effective skincare for spas, salons, and everyday routines. Shop trusted brands in bulk or individually at affordable prices.",
     images:
-      "https://res.cloudinary.com/dtipo8fg3/image/upload/v1731517338/istockphoto-637324230-612x612_gzcdkm.jpg",
+      "https://res.cloudinary.com/dtipo8fg3/image/upload/v1731517338/skincare-wholesale-social.jpg",
   },
 };
+
 
 export default function RootLayout({
   children,
