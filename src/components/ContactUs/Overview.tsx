@@ -5,6 +5,7 @@ import React from "react";
 import FormComponent from "./FormSection";
 import AOS from "aos";
 import { Phone, Mail, MapPin, PhoneCall, MailIcon } from "lucide-react";
+import Section5 from "../home/sections/Section5";
 
 
 function Overview() {
@@ -90,6 +91,8 @@ function Overview() {
           </div>
         </div>{" "}
       </div>
+
+      <Section5 />
     </div>
   );
 }

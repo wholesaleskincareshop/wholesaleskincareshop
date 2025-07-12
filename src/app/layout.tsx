@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "Wholesale Skincare Shop",
     images: [
       {
-        url: "https://res.cloudinary.com/dtipo8fg3/image/upload/v1731517339/skincare-wholesale-cover.jpg",
+        url: "https://res.cloudinary.com/dqziqldkb/image/upload/v1752326559/6010238764733025601_giaz9n.jpg",
         width: 1200,
         height: 630,
         alt: "Spa-quality skincare products for businesses and individuals",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     description:
       "Effective skincare for spas, salons, and everyday routines. Shop trusted brands in bulk or individually at affordable prices.",
     images:
-      "https://res.cloudinary.com/dtipo8fg3/image/upload/v1731517338/skincare-wholesale-social.jpg",
+      "https://res.cloudinary.com/dqziqldkb/image/upload/v1752326559/6010238764733025601_giaz9n.jpg",
   },
 };
 

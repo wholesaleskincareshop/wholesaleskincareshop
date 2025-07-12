@@ -61,8 +61,8 @@ function BlogIntro() {
           Our <span className="text-primary">Skincare</span> Blog
         </Header3>
         <Paragraph1 className="max-w-[883px] text-center">
-          Welcome to our blog — your resource for expert skincare insights,
-          product highlights, and wellness tips.
+          Explore expert insights, wholesale tips, and skincare guidance
+          tailored for spa professionals, retailers, and skincare lovers alike.
         </Paragraph1>
       </div>
 
