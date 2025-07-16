@@ -39,8 +39,8 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
   };
 
   return (
-    <div className="relative container1">
-      <div className="w-full relative sm:h-[350px] h-[200px] border rounded-lg mx-auto overflow-hidden">
+    <div className="relative ">
+      <div className="w-full container1 relative sm:h-[350px] h-[200px] border rounded-lg mx-auto overflow-hidden">
         {imageUrls.map((src, index) => (
           <img
             key={index}
@@ -60,7 +60,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute z-50 sm:left-6 left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 p-1 rounded-full"
+        className="absolute z-50 sm:left-6 left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 p-1 rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute z-50 sm:right-6 right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 p-1 rounded-full"
+        className="absolute z-50 sm:right-6 right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 p-1 rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
