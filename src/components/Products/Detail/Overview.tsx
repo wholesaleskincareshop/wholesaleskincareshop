@@ -177,11 +177,11 @@ const ProductDetail = () => {
                   src={
                     image
                       ? image.replace("/upload/", "/upload/w_500,f_auto/")
-                      : "/images/default-product.png"
+                      : "https://res.cloudinary.com/dqziqldkb/image/upload/v1752635392/istockphoto-1147544807-612x612_j4wxgf.jpg"
                   }
                   alt={`Product thumbnail ${index + 1}`}
-                  className={`h-20 w-20 object-cover rounded-lg cursor-pointer ${
-                    selectedImage === image ? "ring-2 ring-blue-500" : ""
+                  className={`h-20 min-h-20 min-w-20 w-20 object-cover rounded-lg cursor-pointer ${
+                    selectedImage === image ? "ring-2 ring-primary" : ""
                   }`}
                   onClick={() => setSelectedImage(image)}
                 />

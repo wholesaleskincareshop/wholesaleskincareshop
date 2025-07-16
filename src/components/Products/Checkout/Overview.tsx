@@ -31,6 +31,7 @@ type Product = {
   price: number;
   quantity: number;
   currentPrice: any;
+  oldPrice: any;
   productImageURL1: any;
   productWeight: any;
 };
@@ -107,10 +108,13 @@ const CheckOutOverview = () => {
   const shuffledProducts = [...relatedProducts].sort(() => 0.5 - Math.random());
   const randomProducts = shuffledProducts.slice(0, 4);
 
-  const subtotal = products.reduce(
-    (total, product) => total + product.currentPrice * product.quantity,
-    0
-  );
+  const subtotal = products.reduce((total, product) => {
+    const useOldPrice =
+      product.oldPrice && product.quantity > 6
+        ? product.oldPrice
+        : product.currentPrice;
+    return total + useOldPrice * product.quantity;
+  }, 0);
 
   // Calculate total product weight
   const totalProductWeight = products.reduce(

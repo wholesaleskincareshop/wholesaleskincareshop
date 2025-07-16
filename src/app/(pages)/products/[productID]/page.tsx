@@ -18,14 +18,14 @@ export async function generateMetadata({
 
   if (!productSnap.exists()) {
     return {
-      title: "Product Not Found - GrandioseGrin Cosmetics",
+      title: "Product Not Found - Wholesale Skincare Shop – E-commerce Platform for Professionals & Individuals",
       description: "The product you are looking for is not available.",
     };
   }
 
   const product = productSnap.data();
   return {
-    title: `${product.name} - GrandioseGrin Cosmetics`,
+    title: `${product.name} - Wholesale Skincare Shop – E-commerce Platform for Professionals & Individuals`,
     description: `Price: ₦${product.currentPrice}, ${product.description}`,
     openGraph: {
       title: product.name,

@@ -16,7 +16,7 @@ export default function ProductGrid({
 }) {
   return (
     <>
-      <div className="grid grid-cols-2 xl:grid-cols-5 sm:grid-cols-1 gap-2 xl:gap-4 [30px]">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 xl:gap-4 [30px]">
         {displayedProducts.length > 0 ? (
           displayedProducts.map((product) => (
             <ProductCard

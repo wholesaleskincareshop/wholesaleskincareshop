@@ -15,31 +15,13 @@ type BlogValues = {
   description: string;
 };
 
-function BlogIntro() {
-  const [loading, setLoading] = useState(true);
-  const [blogs, setBlogs] = useState<BlogValues[]>([]);
+interface BlogIntroProps {
+  blogs: BlogValues[];
+}
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "blogs"));
-        const blogsData = querySnapshot.docs.map((doc) => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            ...data,
-          };
-        }) as BlogValues[];
-
-        setBlogs(blogsData);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlogs();
-  }, []);
+function BlogIntro({ blogs }: BlogIntroProps) {
+  
+ 
 
   React.useEffect(() => {
     AOS.init({

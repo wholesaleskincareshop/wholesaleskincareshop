@@ -16,10 +16,15 @@ const ProductCartCard: React.FC<ProductCartCardProps> = ({
 }) => {
   const { selectedCurrency, exchangeRate } = useExchangeRateStore();
 
-  const displayPrice =
-    selectedCurrency === "USD" && exchangeRate > 0
-      ? product.currentPrice / exchangeRate // Convert to USD
-      : product.currentPrice; // Default to NGN
+  const basePrice =
+  product.oldPrice && product.quantity > 6
+    ? product.oldPrice
+      : product.currentPrice;
+  
+      const displayPrice =
+        selectedCurrency === "USD" && exchangeRate > 0
+          ? basePrice / exchangeRate
+          : basePrice;
 
   const currencySymbol = selectedCurrency === "USD" ? "$" : "₦";
 

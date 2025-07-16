@@ -14,15 +14,15 @@ function Overview() {
   });
   
   return (
-    <div className="pt-[20px] bg-bg_gray">
+    <div className="pt-[100px] bg-bg_gray">
       <div data-aos="flip-right" className="container1">
         <div className="relative overflow-hidden">
           <div className="flex flex-col bg-primary sm:gap-[20px] px-4 sm:p-[65px] py-12 sm:py- rounded-t-[24px] w-full sm:text-center text-white">
             <Header1Plus>Privacy Policy</Header1Plus>
             <Paragraph3>
-              At GrandioseGrin, your privacy is our priority. This policy
-              explains how we collect, use, and safeguard your personal
-              information when you shop with us or interact with our website.
+              At Wholesale Skincare Shop, we're committed to protecting your
+              privacy. This policy details how we collect, use, and secure your
+              personal information as you browse and shop with us.
             </Paragraph3>
           </div>
           <div className="absolute sm:-bottom-[200px] -bottom-[60px] overflow-hidden flex w-full">
@@ -40,16 +40,20 @@ function Overview() {
               Information We Collect
             </ParagraphLink1>
             <Paragraph1>
-              To provide the best experience at GrandioseGrin, we may collect:
+              To provide the best experience at Wholesale Skincare Shop, we may
+              collect:
               <br />
               - Personal Details: Name, email, phone number, and address
-              provided during account creation or checkout.
+              provided during account creation or checkout for both individual
+              and B2B customers (spas, salons, estheticians, resellers).
               <br />
-              - Purchase Data: Products bought and preferences to recommend
-              tailored solutions.
-              <br />- Cookies: Used to personalize your shopping experience and
-              enhance website performance. Manage these via your browser
-              settings.
+              - Purchase Data: Details of skincare products bought in bulk or
+              retail, and preferences to recommend tailored solutions for every
+              skin type.
+              <br />- Cookies: Used to personalize your shopping experience,
+              enhance website performance, and optimize browsing for
+              dermatologist-grade skincare products. Manage these via your
+              browser settings.
             </Paragraph1>
           </div>
 
@@ -60,12 +64,15 @@ function Overview() {
             <Paragraph1>
               Your information allows us to:
               <br />
-              - Process Orders: Ensure smooth order fulfillment and shipping.
+              - Process Orders: Ensure smooth fulfillment and shipping for both
+              bulk wholesale and individual retail purchases.
               <br />
-              - Improve Services: Personalize product recommendations and
-              enhance user experience based on preferences.
+              - Improve Services: Personalize recommendations for high-quality,
+              science-backed skincare products and enhance user experience for
+              beauty professionals and consumers.
               <br />- Stay Connected: With your consent, share updates on new
-              arrivals, promotions, or exclusive deals.
+              arrivals, promotions, or exclusive deals for spa and salon
+              skincare supplies.
             </Paragraph1>
           </div>
 
@@ -75,7 +82,8 @@ function Overview() {
             </ParagraphLink1>
             <Paragraph1>
               We implement industry-standard security measures to protect your
-              personal data. While no system is completely secure, we are
+              personal data, ensuring trust for beauty professionals and
+              individual customers. While no system is completely secure, we are
               committed to keeping your information safe.
             </Paragraph1>
           </div>
@@ -88,9 +96,10 @@ function Overview() {
               Your information is not sold or shared except:
               <br />
               - With Trusted Vendors: To facilitate payment processing,
-              shipping, and other essential services.
+              shipping, and other essential services for wholesale and retail
+              orders.
               <br />- For Legal Compliance: When required by law or to protect
-              our rights.
+              the rights of Wholesale Skincare Shop.
             </Paragraph1>
           </div>
 
@@ -101,10 +110,13 @@ function Overview() {
             <Paragraph1>
               You have the right to:
               <br />
-              - Access, correct, or delete your personal details.
+              - Access, correct, or delete your personal details, whether you're
+              an individual or a business customer.
               <br />
-              - Unsubscribe from marketing emails at any time.
-              <br />- Manage cookies through your browser settings.
+              - Unsubscribe from marketing emails about our skincare products at
+              any time.
+              <br />- Manage cookies through your browser settings to control
+              your shopping experience.
             </Paragraph1>
           </div>
 
@@ -113,9 +125,9 @@ function Overview() {
               Links to External Websites
             </ParagraphLink1>
             <Paragraph1>
-              Our website may include links to third-party platforms. We
-              encourage you to review their privacy policies, as we are not
-              responsible for their practices.
+              Our website (https://www.wholesaleskincareshop.com) may include
+              links to third-party platforms. We encourage you to review their
+              privacy policies, as we are not responsible for their practices.
             </Paragraph1>
           </div>
 
@@ -124,9 +136,10 @@ function Overview() {
               Changes to Our Privacy Policy
             </ParagraphLink1>
             <Paragraph1>
-              Updates to this policy may occur periodically. All changes will be
-              published here with an effective date. We recommend reviewing this
-              policy regularly.
+              Updates to this policy may occur periodically to reflect our
+              commitment to serving both beauty professionals and individual
+              consumers. All changes will be published here with an effective
+              date. We recommend reviewing this policy regularly.
             </Paragraph1>
           </div>
         </div>

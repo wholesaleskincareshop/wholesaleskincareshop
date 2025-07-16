@@ -563,7 +563,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                     />
                   </div>
                   <div>
-                    <label>Old Price</label>
+                    <label>Bulk Price</label>
                     <Field name="oldPrice">
                       {({ field, form }: FieldProps<string>) => (
                         <input
@@ -731,18 +731,18 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                   <Field type="checkbox" name="isTrending" />
                   <label>Trending Product</label>
                 </div>
-                <div className="flex items-center gap-2 my-2">
+                {/* <div className="flex items-center gap-2 my-2">
                   <Field type="checkbox" name="isElite" />
                   <label>Single Products</label>
                 </div>
                 <div className="flex items-center gap-2 my-2">
                   <Field type="checkbox" name="isSpecial" />
                   <label>Special Product</label>
-                </div>
-                <div className="flex items-center gap-2 my-2">
+                </div> */}
+                {/* <div className="flex items-center gap-2 my-2">
                   <Field type="checkbox" name="isBudget" />
                   <label>Wholesale and Bulk Products</label>
-                </div>
+                </div> */}
                 <div className="flex justify-between">
                   <button
                     type="button"

@@ -65,9 +65,9 @@ export default function Overview() {
         <div className="">
           <div className="">
             {" "}
-            <div className="mb-4 xl:hidden pt-2">
+            {/* <div className="mb-4 xl:hidden pt-2">
               <SearchBar />
-            </div>
+            </div> */}
             {/* <SectionScroller
               sections={sections}
               setActiveFilter={state.setActiveFilter}

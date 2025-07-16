@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Paragraph2, ParagraphLink2 } from "@/components/Text";
+import { Paragraph1, Paragraph2, ParagraphLink2 } from "@/components/Text";
 import Button from "@/components/Button";
 import ProductModal from "./ProductModal";
 
@@ -66,18 +66,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
         <div className=" flex flex-col justify-center border-t pt-2 items-center   ga -rounded-lg  bg-white bg-opacity-65">
-          <p className=" font-medium  pb-2  whitespace-nowrap w-[100%] truncate overflow-hidden">
+          <Paragraph1 className=" font-medium  pb-2  whitespace-nowrap w-[100%] truncate overflow-hidden">
             {" "}
             {title}{" "}
-          </p>
+          </Paragraph1>
 
-          <p className=" pb-2  whitespace-nowrap w-[100%] truncate  ">
+          <Paragraph2 className=" pb-2  whitespace-nowrap w-[100%] truncate  ">
             No. Sold: {product.numberSold || "0"}
-          </p>
+          </Paragraph2>
           <button className="whitespace-nowrap text-[13px] flex justify-center py-1 bg-primary hover:bg-black rounded-lg w-full  text-white ">
-            <p>{`₦ ${new Intl.NumberFormat("en-US", {}).format(
+            <Paragraph1>{`₦ ${new Intl.NumberFormat("en-US", {}).format(
               Number(price)
-            )}`}</p>
+            )}`}</Paragraph1>
           </button>
         </div>
       </div>

@@ -26,12 +26,12 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
   const mainCategories = categories.filter((category) => !category.parentId);
 
   return (
-    <div className=" font-bold  py-4">
-      <div className="">
+    <div className=" font-bold py-2 sm:py-4">
+      {/* <div className="">
         <ParagraphLink2 className="text-[16px] font-semibold pb-2">
           Categories
         </ParagraphLink2>
-      </div>
+      </div> */}
       <div className="flex overflow-x-auto gap-2 sm:gap-4   rounded-lg whitespace-nowrap scrollbar-hide">
         <button
           className={`flex gap-4 w-full  rounded-lg px-4 sm:py-2 xl:py-0 ${

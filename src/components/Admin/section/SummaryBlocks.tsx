@@ -65,28 +65,28 @@ function SummaryBlocks() {
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4">
           <div className="col-span-1">
-            <div className="w-full bg-white rounded-lg p-6 border-b-4 border-secondary">
+            <div className="w-full bg-white rounded-lg p-6 border shadow-md">
               {/* Total revenue */}
               <HeaderAny>Total Revenue</HeaderAny>
               <HeaderAny className="text-black text">₦ {totalRevenue.toLocaleString()}</HeaderAny>
             </div>
           </div>
-          <div className="hidden sm:block col-span-1">
-            <div className="w-full bg-white rounded-lg p-6 border-b-4 border-secondary">
+          <div className=" col-span-1">
+            <div className="w-full bg-white rounded-lg p-6 border shadow-md">
               {/* Total products sold */}
               <HeaderAny>Total Products Sold</HeaderAny>
               <HeaderAny className="text-black">{totalProductsSold.toLocaleString()}</HeaderAny>
             </div>
           </div>
-          <div className="hidden sm:block col-span-1">
-            <div className="w-full bg-white rounded-lg p-6 border-b-4 border-secondary">
+          <div className=" col-span-1">
+            <div className="w-full bg-white rounded-lg p-6 border shadow-md">
               {/* Available products */}
               <HeaderAny>Available Product</HeaderAny>
               <HeaderAny className="text-black">{availableProducts.toLocaleString()}</HeaderAny>
             </div>
           </div>
           <div className="col-span-1">
-            <div className="w-full bg-white rounded-lg p-6 border-b-4 border-secondary">
+            <div className="w-full bg-white rounded-lg p-6 border shadow-md">
               {/* Pending orders */}
               <HeaderAny>Pending Order</HeaderAny>
               <HeaderAny className="text-black">{pendingOrders.toLocaleString()}</HeaderAny>

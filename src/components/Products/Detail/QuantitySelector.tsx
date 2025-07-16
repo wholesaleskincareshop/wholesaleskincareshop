@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Header3, Header4, Paragraph1 } from "@/components/Text";
+import { Header3, Header4, Paragraph1, Paragraph2 } from "@/components/Text";
 import { Package, MinusIcon, Plus } from "lucide-react";
 
 interface PackOption {
@@ -46,9 +46,10 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   const totalQuantity = quantity * selectedPack.multiplier;
 
   const unitPrice =
-    selectedPack.multiplier > 1 && product.oldPrice
-      ? product.currentPrice - (product.oldPrice - product.currentPrice)
+    totalQuantity > 6 && product.oldPrice
+      ? product.oldPrice
       : product.currentPrice;
+
 
   const totalPrice = unitPrice * totalQuantity;
 
@@ -101,13 +102,12 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
               totalPrice
             )}`}
           </Header3>
-
-          {product.oldPrice && selectedPack.multiplier > 1 && (
-            <p className="text-[12px] text-gray-700 sm:mb-0 line-through">
+          {product.oldPrice && totalQuantity > 6 && (
+            <Paragraph2 className="text-[12px] text-gray-700 sm:mb-0 line-through">
               {`${currencySymbol} ${new Intl.NumberFormat("en-US").format(
-                product.oldPrice * totalQuantity
+                product.currentPrice * totalQuantity
               )}`}
-            </p>
+            </Paragraph2>
           )}
         </div>
       </div>

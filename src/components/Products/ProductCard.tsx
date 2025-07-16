@@ -65,18 +65,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     : "/images/default-product.png"
                 }
                 alt={title}
-                className="w-full h-[150px] object-cover  hover:scale-110 transition-transform duration-300 "
+                className="w-full h-[170px] object-cover  hover:scale-110 transition-transform duration-300 "
               />
             </Link>
             <div className=" flex flex-col  p-2 items-center   bg-white bg-opacity-65">
-              <Paragraph1 className=" font-medium w-[100%] whitespace-nowrap truncate overflow-hidden">
+              <Paragraph2 className=" font-medium w-[100%]  whitespace-nowrap truncate overflow-hidden">
                 {" "}
                 {title}{" "}
-              </Paragraph1>
-              <Paragraph1 className=" flex w-full">{`${currencySymbol} ${new Intl.NumberFormat(
+              </Paragraph2>
+              <Paragraph2 className=" font-bold-  flex w-full mb-3">{`${currencySymbol} ${new Intl.NumberFormat(
                 "en-US",
                 {}
-              ).format(Number(formattedPrice))}`}</Paragraph1>
+              ).format(Number(formattedPrice))}`}</Paragraph2>
               {product.availableAmount === "0" ? (
                 <div className=" flex px-2  justify-center py-1 sm:hidden- w-full items-center rounded-lg bg-black text-white text-center">
                   Out of Stock

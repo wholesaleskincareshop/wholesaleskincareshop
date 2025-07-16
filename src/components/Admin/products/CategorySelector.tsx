@@ -1,4 +1,4 @@
-import { ParagraphLink2 } from "@/components/Text";
+import { ParagraphLink1, ParagraphLink2 } from "@/components/Text";
 import React from "react";
 
 interface Category {
@@ -25,9 +25,9 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
   return (
     <div className="w-full">
       <div className=" ">
-        <ParagraphLink2 className="text-[16px] font-semibold pb-2">
+        <ParagraphLink1 className="text-[16px] font-semibold pb-2">
           Categories
-        </ParagraphLink2>
+        </ParagraphLink1>
       </div>
 
       <div className="flex overflow-x-auto gap-4 p-2 border rounded-lg whitespace-nowrap scrollbar-hide">
@@ -42,7 +42,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
             closeMenu();
           }}
         >
-          <ParagraphLink2>All</ParagraphLink2>
+          <ParagraphLink1>All</ParagraphLink1>
         </button>
 
         {mainCategories.map((category) => (
@@ -58,9 +58,9 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
               closeMenu();
             }}
           >
-            <ParagraphLink2 className="whitespace-nowrap">
+            <ParagraphLink1 className="whitespace-nowrap">
               {category.name}
-            </ParagraphLink2>
+            </ParagraphLink1>
           </button>
         ))}
       </div>

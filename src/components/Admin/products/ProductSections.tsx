@@ -141,7 +141,7 @@ function ProductSections() {
           (product) => product.availableAmount > 0
         );
         break;
-       case "Out of Stock":
+      case "Out of Stock":
         setLoading(true);
         filteredProducts = filteredProducts.filter(
           (product) => product.availableAmount <= 0
@@ -164,18 +164,16 @@ function ProductSections() {
     setLoading(false);
   }, [selectedCategory, activeFilter, products]);
 
-
-   useEffect(() => {
-     if (searchQuery) {
-       const filteredProducts = products.filter((product) =>
-         product.name.toLowerCase().includes(searchQuery.toLowerCase())
-       );
-       setDisplayedProducts(filteredProducts);
-     } else {
-       setDisplayedProducts(products);
-     }
-   }, [searchQuery, products]);
-  
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setDisplayedProducts(filteredProducts);
+    } else {
+      setDisplayedProducts(products);
+    }
+  }, [searchQuery, products]);
 
   const filters = [
     "All",
@@ -188,10 +186,10 @@ function ProductSections() {
     "Low Stock",
   ];
 
-   const handleRefetch = () => {
-     setLoading(true); // Optionally show loading indicator
-     setRefetch((prev) => !prev); // Toggle refetch state to trigger useEffect
-   };
+  const handleRefetch = () => {
+    setLoading(true); // Optionally show loading indicator
+    setRefetch((prev) => !prev); // Toggle refetch state to trigger useEffect
+  };
 
   if (loading)
     return (
@@ -202,13 +200,10 @@ function ProductSections() {
 
   return (
     <div>
-      <div className="container1  pt-[100px]  xl:pt-[84px] pb-[24px] ">
+      <div className="container1  pt-[50px]  xl:pt-[84px] pb-[24px] ">
         <AddMore onRefetch={handleRefetch} />
 
         <div className=" py-[24px]-">
-          <div>
-            <Header4>All Products</Header4>
-          </div>
           <div className=" gap-4 mt-8">
             <CategorySelector
               categories={categories}
@@ -224,34 +219,12 @@ function ProductSections() {
               <div className="xl:hidden  px-2 mb-4">
                 <ParagraphLink1 className=" ">
                   Number of unique products:{" "}
-                  <span className=" font-bold p-2 border rounded-lg">
+                  <span className=" font-bold px-4- bg-white p-1 border  rounded-lg">
                     {displayedProducts.length}
                   </span>
                 </ParagraphLink1>
               </div>
               <div className=" flex w-full justify-between items-center mb-4">
-                <div className=" relative xl:hidden">
-                  <button
-                    onClick={() => setIsCOpen(!isCOpen)}
-                    className="  w-fit px-2 py-1 border rounded-lg "
-                  >
-                    <ParagraphLink1 className="  ">Categories</ParagraphLink1>
-                  </button>
-
-                  <div
-                    className={`fixed top-0 left-0 h-full z-20 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
-                      isCOpen ? "translate-x-0" : "-translate-x-full"
-                    }`}
-                    style={{ width: "300px" }}
-                  >
-                    <CategorySelector
-                      categories={categories}
-                      selectedCategory={selectedCategory}
-                      setSelectedCategory={setSelectedCategory}
-                      closeMenu={() => setIsCOpen(false)} // Pass the close function
-                    />
-                  </div>
-                </div>
                 <div className="xl:flex hidden  ">
                   <ParagraphLink1 className=" ">
                     Number of unique products:{" "}
@@ -260,12 +233,15 @@ function ProductSections() {
                     </span>
                   </ParagraphLink1>
                 </div>
-                <div className=" flex gap-1 items-center">
+                <div>
+                  <Header3> Products</Header3>
+                </div>
+                <div className=" flex  gap-1 items-center">
                   <CategoryEditor onRefetch={refetch} />
                   <div className="relative inline-">
                     <div
                       onClick={() => setIsOpen(!isOpen)}
-                      className=" flex gap-4 bg-white w-fit cursor-pointe rounded-lg p-2"
+                      className=" flex gap-4 border bg-white w-fit cursor-pointe rounded-lg p-2"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +278,7 @@ function ProductSections() {
               </div>
               {/* data-aos="fade-right" */}
 
-              <div className="grid grid-cols-2 xl:grid-cols-5 sm:grid-cols-1 gap-2 [24px] xl:gap-4 [30px] ">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 [24px] xl:gap-4 [30px] ">
                 {displayedProducts.length > 0 ? (
                   displayedProducts.map((product) => (
                     <ProductCard

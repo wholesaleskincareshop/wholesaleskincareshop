@@ -14,6 +14,7 @@ type Product = {
   price: number;
   quantity: number;
   currentPrice: any;
+  oldPrice: any;
 };
 
 type CartSummaryProps = {
@@ -69,10 +70,14 @@ const CartSummary: React.FC<CartSummaryProps> = ({ isOpen, onClose }) => {
     const currencySymbol = selectedCurrency === "USD" ? "$" : "₦";
 
 
-  const subtotal = products.reduce(
-    (total, product) => total + product.currentPrice * product.quantity,
-    0
-  );
+    const subtotal = products.reduce((total, product) => {
+      const unitPrice =
+        product.oldPrice && product.quantity > 6
+          ? product.oldPrice
+          : product.currentPrice;
+
+      return total + unitPrice * product.quantity;
+    }, 0);
 
   
 

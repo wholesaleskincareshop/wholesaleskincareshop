@@ -36,13 +36,13 @@ export async function generateMetadata({
 
   if (!currentBlog) {
     return {
-      title: "Blog Not Found @ GrandioseGrin Cosmetics",
+      title: "Blog Not Found @ Wholesale Skincare Shop – E-commerce Platform for Professionals & Individuals Cosmetics",
       description: "The blog post you are looking for is not available.",
     };
   }
 
   return {
-    title: `${currentBlog.title} @ GrandioseGrin Cosmetics`,
+    title: `${currentBlog.title} @ Wholesale Skincare Shop – E-commerce Platform for Professionals & Individuals Cosmetics`,
     description: currentBlog.description.slice(0, 160), // First 160 characters as description
     openGraph: {
       title: currentBlog.title,
@@ -61,6 +61,14 @@ export async function generateMetadata({
       images: [currentBlog.blogImageURL1 || "/default-image.jpg"],
     },
   };
+}
+
+export async function generateStaticParams() {
+  const snapshot = await getDocs(collection(db, "blogs"));
+
+  return snapshot.docs.map((doc) => ({
+    slug: doc.id, // assuming you're using blog.id as the slug
+  }));
 }
 
 export default async function BlogPage({
@@ -104,7 +112,7 @@ export default async function BlogPage({
       .replace(/- (.*?)(\n|$)/g, '<li class="pb-4 pt-1">$1</li>')
       .replace(
         /(\d+)\. (.*?)(\n|$)/g,
-        '<p class="pb-4 pt-1" value="$1">$1.  $2</p>'
+        '<p class="pb-1 pt-4" value="$1">$1.  $2</p>'
       )
       .replace(
         /\[(.*?)\]\((.*?)\)/g,
@@ -128,7 +136,10 @@ export default async function BlogPage({
           </p>{" "}
           <div className="h-[300px] w-full my-4 flex border">
             <img
-              src={currentBlog.blogImageURL1}
+              src={currentBlog.blogImageURL1.replace(
+                "/upload/",
+                "/upload/w_1000,f_auto/"
+              )}
               alt="Blog Cover"
               className="w-full h-full object-cover"
             />
