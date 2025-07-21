@@ -39,9 +39,9 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
   };
 
   return (
-    <div className="">
-      <div className="relative container1">
-        <div className="w-full  relative sm:h-[350px] h-[160px] border rounded-lg mx-auto overflow-hidden">
+    <div className="sm:max-w-6xl mx-auto">
+      <div className="relative">
+        <div className="w-full  relative sm:h-[350px] h-[160px]  border sm:rounded-lg  overflow-hidden">
           {imageUrls.map((src, index) => (
             <img
               key={index}
