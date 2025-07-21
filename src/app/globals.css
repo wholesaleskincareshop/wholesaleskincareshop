@@ -168,6 +168,6 @@ html, body {
 }
 
 .reserve-two-lines {
-  min-height: 3.6em; /* Roughly two lines of text at normal font size */
+  min-height: 3.5em; /* Roughly two lines of text at normal font size */
   line-height: 1.6em; /* or adjust based on your design */
 }
