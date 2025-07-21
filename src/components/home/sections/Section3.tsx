@@ -4,6 +4,7 @@ import {
   Header3,
   Header4,
   Paragraph1,
+  Paragraph3,
   ParagraphLink1,
 } from "@/components/Text";
 import Link from "next/link";
@@ -43,7 +44,12 @@ const Section3: React.FC<Section3Props> = ({ latestProducts }) => {
         <div className=" grid grid-cols-2 sm:grid-cols-4 items-center scrollbar-hide gap-2 sm:gap-[24px]">
           {latestProducts && latestProducts.length > 0
             ? latestProducts.slice(0, 8).map((product: any) => (
-                <div className=" ">
+                <div className=" relative ">
+                  <div className=" absolute left-1 top-1 z-10 bg-black bg-opacity-70 rounded-md px-2">
+                    <Paragraph3 className="text-white bold text-[12px]">
+                      New{" "}
+                    </Paragraph3>
+                  </div>{" "}
                   <ProductCard
                     key={product.id}
                     image={product.productImageURL1}

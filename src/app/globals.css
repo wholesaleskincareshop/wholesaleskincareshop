@@ -159,3 +159,15 @@ html, body {
   display: inline-flex;
   animation: slide-loop 300s linear infinite;
 }
+
+.two-line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.reserve-two-lines {
+  min-height: 3.6em; /* Roughly two lines of text at normal font size */
+  line-height: 1.6em; /* or adjust based on your design */
+}

@@ -45,7 +45,14 @@ const Section2: React.FC<Section2Props> = ({ featuredProducts }) => {
         <div className=" grid grid-cols-2 sm:grid-cols-4 items-center scrollbar-hide gap-2   sm:gap-[24px]">
           {featuredProducts && featuredProducts.length > 0
             ? featuredProducts.slice(0, 8).map((product: any) => (
-                <div className=" ">
+                <div className=" relative  ">
+                  <div className=" absolute right-2 top-0 z-10">
+                    <img
+                      src="https://res.cloudinary.com/dqziqldkb/image/upload/v1753105793/bookmark_n2rzdd.png"
+                      alt=""
+                      className=" h-8 w-8"
+                    />
+                  </div>
                   <ProductCard
                     key={product.id}
                     image={product.productImageURL1}

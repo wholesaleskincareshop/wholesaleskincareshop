@@ -114,8 +114,10 @@ export const Paragraph1: React.FC<{
 export const Paragraph2: React.FC<{
   children: React.ReactNode;
   className?: string;
+  
 }> = ({ children, className = "" }) => (
   <p
+  
     className={`text-[14px] sm:text-[16px] leading-[24px] sm:leading-[28px] md:leading-[32px] lg:leading-[36px] xl:leading-[38px] 2xl:leading-[40px]   ${body_p_regular.className} ${className}`}
   >
     {children}

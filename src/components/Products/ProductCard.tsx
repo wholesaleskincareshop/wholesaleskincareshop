@@ -65,13 +65,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     : "/images/default-product.png"
                 }
                 alt={title}
-                className="w-full h-[170px] object-cover rounded-[12px]  hover:scale-110 transition-transform duration-300 "
+                className="w-full h-[200px] object-cover rounded-[12px]  hover:scale-110 transition-transform duration-300 "
               />
             </Link>
             <div className=" flex flex-col  p-2 items-center   bg-white bg-opacity-65">
-              <Paragraph2 className=" font-medium w-[100%]  whitespace-nowrap truncate overflow-hidden">
-                {" "}
-                {title}{" "}
+              <Paragraph2 className="font-medium w-full two-line-clamp reserve-two-lines">
+                {title}
               </Paragraph2>
               <Paragraph2 className=" font-bold-  flex w-full mb-2">{`${currencySymbol} ${new Intl.NumberFormat(
                 "en-US",
