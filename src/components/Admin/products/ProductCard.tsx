@@ -47,7 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               : "/images/default-product.png"
           }
           alt={title}
-          className="w-full h-[100px] object-cover rounded-lg hover:scale-110 transition-transform duration-300 "
+          className="w-full h-[120px] object-cover rounded-lg hover:scale-110 transition-transform duration-300 "
         />
         <div
           className={`absolute top-2 left-2 px-2 py-1 rounded-lg ${
@@ -74,11 +74,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <Paragraph2 className=" pb-2  whitespace-nowrap w-[100%] truncate  ">
             No. Sold: {product.numberSold || "0"}
           </Paragraph2>
-          <button className="whitespace-nowrap text-[13px] flex justify-center py-1 bg-primary hover:bg-black rounded-lg w-full  text-white ">
-            <Paragraph1>{`₦ ${new Intl.NumberFormat("en-US", {}).format(
-              Number(price)
-            )}`}</Paragraph1>
-          </button>
+
+          <Paragraph2 className="w-[100%]">{`₦ ${new Intl.NumberFormat(
+            "en-US",
+            {}
+          ).format(Number(price))}`}</Paragraph2>
+          <button className="whitespace-nowrap text-[13px] flex justify-center py-1 bg-primary hover:bg-black rounded-lg w-full  text-white "></button>
         </div>
       </div>
     </div>

@@ -145,3 +145,17 @@ html, body {
   border: none;          /* Removes any border */
   outline: none;         /* Ensures there's no outline */
 }
+
+@keyframes slide-loop {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.sliding-track {
+  display: inline-flex;
+  animation: slide-loop 300s linear infinite;
+}

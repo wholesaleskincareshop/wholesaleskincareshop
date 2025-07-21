@@ -194,7 +194,7 @@ function Footer() {
 
           {/* mobile  */}
           <div className=" mb-[24px] sm:hidden sm:mb-[110px]">
-            <div className=" space-y-[24px] mb-[24px] ">
+            <div className=" flex flex-wrap gap-4 mb-[24px] ">
               {" "}
               <Link href="/">
                 {" "}
@@ -204,27 +204,27 @@ function Footer() {
               </Link>
               <Link href="/about-us">
                 {" "}
-                <ParagraphLink2 className=" text-[#ECECEC]  ">
+                <ParagraphLink1 className=" text-[#ECECEC]  ">
                   About{" "}
-                </ParagraphLink2>
+                </ParagraphLink1>
               </Link>
               <Link href="/products">
                 {" "}
-                <ParagraphLink2 className=" text-[#ECECEC] ">
+                <ParagraphLink1 className=" text-[#ECECEC] ">
                   Shop
-                </ParagraphLink2>
+                </ParagraphLink1>
               </Link>
               <Link href="/blog">
                 {" "}
-                <ParagraphLink2 className=" text-[#ECECEC] ">
+                <ParagraphLink1 className=" text-[#ECECEC] ">
                   Blog
-                </ParagraphLink2>
+                </ParagraphLink1>
               </Link>
               <Link href="/contact-us">
                 {" "}
-                <ParagraphLink2 className=" text-[#ECECEC] ">
+                <ParagraphLink1 className=" text-[#ECECEC] ">
                   Contact us
-                </ParagraphLink2>
+                </ParagraphLink1>
               </Link>
               <div className=" flex flex-col p-4- gap-2 items-center- justify-center-">
                 <div className=" flex gap-4 items-center mb-4">
@@ -304,8 +304,8 @@ function Footer() {
           </div>
 
           <div className=" border-t pt-[24px] sm:pt-[32px] flex flex-wrap justify-between">
-            <div className=" flex justify-center items-center sm:hidden py-4">
-              <div className=" py-2 px-4 rounded-lg bg-white flex justify-center items-center gap-2 flex-col">
+            <div className=" flex justify-center w-full sm:w-fit sm:bg-transparent bg-white rounded-md mb-4 items-center sm:hidden py-4">
+              <div className=" py-2 px-4 rounded-sm  bg-white flex justify-center items-center gap-2 flex-col">
                 <p className=" text-[12px]  ">
                   {" "}
                   Payments secuered by{" "}

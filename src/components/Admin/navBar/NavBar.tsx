@@ -32,7 +32,7 @@ function NavBar() {
             <img
               src="/logo1.jpg"
               alt=""
-              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-lg"
+              className="sm:h-[50px] h-[35px] xl:flex hidden- rounded-sm"
             />{" "}
           </Link>
           <div className="xl:flex gap-[24px] hidden"></div>

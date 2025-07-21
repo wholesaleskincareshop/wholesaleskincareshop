@@ -32,10 +32,17 @@ type Product = {
   currentPrice: number;
 };
 
+interface LGA {
+  id: string;
+  name: string;
+  shippingFee: number;
+}
+
 interface State {
   id: string;
   name: string;
   shippingFee: number;
+  lgas?: LGA[];
 }
 
 interface Country {
@@ -112,6 +119,8 @@ const Checkout: React.FC<CheckoutProps> = ({
   const [paymentDenied, setPaymentDenied] = useState(false);
   const [canceledPay, setCanceledPay] = useState(false);
   const [paymentResponse, setPaymentResponse] = useState<string>(""); // State to store payment response
+  const [lgas, setLGAs] = useState<LGA[]>([]);
+  const [selectedLGA, setSelectedLGA] = useState<string>("");
 
   const { selectedCurrency, exchangeRate } = useExchangeRateStore();
 
@@ -153,10 +162,10 @@ const Checkout: React.FC<CheckoutProps> = ({
     if (country) {
       setStates(country.states || []);
       setFieldValue("state", "");
-      calculateTotalShippingFee(country.shippingFee, null, totalProductWeight); // Pass totalProductWeight
+      calculateTotalShippingFee(country.shippingFee, 0, totalProductWeight); // Pass totalProductWeight
     } else {
       setStates([]);
-      calculateTotalShippingFee(0, null, totalProductWeight); // Pass totalProductWeight
+      calculateTotalShippingFee(0, 0, totalProductWeight); // Pass totalProductWeight
     }
 
     setFieldValue("country", value);
@@ -165,46 +174,86 @@ const Checkout: React.FC<CheckoutProps> = ({
   const handleStateChange = (
     value: string,
     setFieldValue: (field: string, value: any) => void,
-    totalProductWeight: number = 0 // Default to 0 if not provided
+    totalProductWeight: number = 0
   ) => {
     setSelectedState(value);
+    setSelectedLGA(""); // reset LGA when state changes
+    setFieldValue("state", value);
+    setFieldValue("city", ""); // clear previous LGA
 
-    const state = states.find((s) => s.name === value);
     const country = countries.find((c) => c.code === selectedCountryCode);
+    const state = states.find((s) => s.name === value); // ← use 'value' directly
 
-    if (state && country) {
-      calculateTotalShippingFee(
-        country.shippingFee,
-        state.shippingFee,
-        totalProductWeight
-      ); // Pass totalProductWeight
-    } else if (country) {
-      calculateTotalShippingFee(country.shippingFee, null, totalProductWeight); // Pass totalProductWeight
+    if (state) {
+      setLGAs(state.lgas || []);
+    } else {
+      setLGAs([]);
     }
 
-    setFieldValue("state", value);
+    const countryFee = country?.shippingFee || 0;
+    const stateFee = state?.shippingFee || 0;
+
+    calculateTotalShippingFee(countryFee, stateFee, totalProductWeight);
+  };
+
+  const handleLGAChange = (
+    value: string,
+    setFieldValue: (field: string, value: any) => void,
+    totalProductWeight: number
+  ) => {
+    setSelectedLGA(value);
+    setFieldValue("city", value);
+
+    const country = countries.find((c) => c.code === selectedCountryCode);
+    const state = states.find((s) => s.name === selectedState);
+    const lga = lgas.find((l) => l.name === value); // ← use 'value' directly
+
+    const countryFee = country?.shippingFee || 0;
+    const stateFee = state?.shippingFee || 0;
+    const lgaFee = lga?.shippingFee || 0;
+
+    calculateTotalShippingFee(countryFee, stateFee, totalProductWeight, lgaFee);
   };
 
   const calculateTotalShippingFee = (
     countryFee: number,
-    stateFee: number | null,
-    totalProductWeight: number
+    stateFee: number = 0,
+    totalProductWeight: number = 0,
+    lgaFee: number = 0
   ) => {
-    setTotalShippingFee(countryFee + (stateFee || 0) + totalProductWeight);
+    const baseFee = countryFee + stateFee + lgaFee;
+
+    // Determine multiplier based on 15kg chunks
+    const weightMultiplier = Math.ceil(totalProductWeight / 15) || 1;
+
+    const total = baseFee * weightMultiplier;
+
+    setTotalShippingFee(total);
+    console.log({
+      countryFee,
+      stateFee,
+      lgaFee,
+      totalProductWeight,
+      baseFee,
+      weightMultiplier,
+      total,
+    });
   };
 
   useEffect(() => {
     const country = countries.find((c) => c.code === selectedCountryCode);
     const state = states.find((s) => s.name === selectedState); // Replace "" with the selected state if tracking
+    const lga = lgas.find((l) => l.name === selectedLGA); // include LGA
 
     if (country) {
       calculateTotalShippingFee(
         country.shippingFee,
-        state?.shippingFee || null,
-        totalProductWeight
+        state?.shippingFee ?? 0,
+        totalProductWeight,
+        lga?.shippingFee ?? 0
       );
     }
-  }, [selectedCountryCode, states, totalProductWeight]);
+  }, [selectedCountryCode, states, totalProductWeight, lgas,]);
 
   const handleNext = (values: typeof shippingInfo) => {
     setShippingInfo(values);
@@ -519,6 +568,20 @@ const Checkout: React.FC<CheckoutProps> = ({
               </div>
               <div>
                 <ParagraphLink2 className="block text-sm font-bold text-gray-700">
+                  Address
+                </ParagraphLink2>
+                <Field
+                  name="address"
+                  className="mt-1 block w-full p-2 border rounded-md"
+                />
+                <ErrorMessage
+                  name="address"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+              <div>
+                <ParagraphLink2 className="block text-sm font-bold text-gray-700">
                   Country
                 </ParagraphLink2>
                 <Field
@@ -548,63 +611,67 @@ const Checkout: React.FC<CheckoutProps> = ({
               </div>
               <div>
                 <ParagraphLink2 className="block text-sm font-bold text-gray-700">
-                  Address
+                  State
                 </ParagraphLink2>
+
                 <Field
-                  name="address"
+                  name="state"
+                  as="select"
                   className="mt-1 block w-full p-2 border rounded-md"
-                />
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    handleStateChange(
+                      e.target.value,
+                      setFieldValue,
+                      totalProductWeight
+                    )
+                  }
+                >
+                  <option value="">Select State</option>
+                  {states.map((state) => (
+                    <option key={state.id} value={state.name}>
+                      {state.name}
+                    </option>
+                  ))}
+                </Field>
                 <ErrorMessage
-                  name="address"
+                  name="state"
                   component="div"
                   className="text-red-500 text-sm"
                 />
               </div>
-              <div>
-                <ParagraphLink2 className="block text-sm font-bold text-gray-700">
-                  City
-                </ParagraphLink2>
-                <Field
-                  name="city"
-                  className="mt-1 block w-full p-2 border rounded-md"
-                />
-                <ErrorMessage
-                  name="city"
-                  component="div"
-                  className="text-red-500 text-sm"
-                />
-              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <ParagraphLink2 className="block text-sm font-bold text-gray-700">
-                    State
+                    LGA/City
                   </ParagraphLink2>
-
                   <Field
-                    name="state"
+                    name="city"
                     as="select"
                     className="mt-1 block w-full p-2 border rounded-md"
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                      handleStateChange(
+                      handleLGAChange(
                         e.target.value,
                         setFieldValue,
                         totalProductWeight
                       )
                     }
                   >
-                    <option value="">Select State</option>
-                    {states.map((state) => (
-                      <option key={state.id} value={state.name}>
-                        {state.name}
+                    <option value="">Select LGA/city</option>
+                    {lgas.map((lga) => (
+                      <option key={lga.id} value={lga.name}>
+                        {lga.name}
                       </option>
                     ))}
                   </Field>
+
                   <ErrorMessage
-                    name="state"
+                    name="city"
                     component="div"
                     className="text-red-500 text-sm"
                   />
                 </div>
+
                 <div>
                   <ParagraphLink2 className="block text-sm font-bold text-gray-700">
                     Zip Code

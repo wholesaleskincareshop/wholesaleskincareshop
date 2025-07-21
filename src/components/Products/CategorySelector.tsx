@@ -1,4 +1,4 @@
-import { ParagraphLink1, ParagraphLink2 } from "@/components/Text";
+import { Paragraph1, ParagraphLink1, ParagraphLink2 } from "@/components/Text";
 import React from "react";
 
 interface Category {
@@ -26,7 +26,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
   const mainCategories = categories.filter((category) => !category.parentId);
 
   return (
-    <div className=" font-bold py-2 sm:py-4">
+    <div className="  py-2 sm:py-4">
       {/* <div className="">
         <ParagraphLink2 className="text-[16px] font-semibold pb-2">
           Categories
@@ -36,7 +36,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
         <button
           className={`flex gap-4 w-full  rounded-lg px-4 sm:py-2 xl:py-0 ${
             !selectedCategory
-              ? "bg-primary text-white"
+              ? "bg-primary font-bold text-white"
               : "bg-white text-black border hover:bg-gray-100"
           }`}
           onClick={() => {
@@ -45,14 +45,14 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
             closeMenu();
           }}
         >
-          <ParagraphLink2 className="py-2">All</ParagraphLink2>
+          <Paragraph1 className="py-2">All</Paragraph1>
         </button>
         {mainCategories.map((category) => (
           <button
             key={category.id}
             className={`flex w-full items-center rounded-lg px-4 sm:py-2 xl:py-0  ${
               selectedCategory === category.id
-                ? "bg-primary text-white"
+                ? "bg-primary font-bold text-white"
                 : "bg-white text-black border hover:bg-gray-100"
             }`}
             onClick={() => {
@@ -62,9 +62,9 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
               closeMenu();
             }}
           >
-            <ParagraphLink2 className="whitespace-nowrap text-[14px] capitalize xl:w-[100px] py-2 truncate">
+            <Paragraph1 className="whitespace-nowrap text-[14px] capitalize xl:w-[100px] py-2 truncate">
               {category.name}
-            </ParagraphLink2>
+            </Paragraph1>
           </button>
         ))}
       </div>

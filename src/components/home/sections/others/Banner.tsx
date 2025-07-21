@@ -41,7 +41,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
   return (
     <div className="">
       <div className="relative container1">
-        <div className="w-full  relative sm:h-[350px] h-[200px] border rounded-lg mx-auto overflow-hidden">
+        <div className="w-full  relative sm:h-[350px] h-[160px] border rounded-lg mx-auto overflow-hidden">
           {imageUrls.map((src, index) => (
             <img
               key={index}
@@ -51,7 +51,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
                   : "/images/default-product.png"
               }
               alt={`Banner ${index + 1}`}
-              className={`absolute top-0 left-0 w-full sm:h-[350px] h-[200px] transition-opacity duration-500 ${
+              className={`absolute top-0 left-0 w-full sm:h-[350px] h-[160px] transition-opacity duration-500 ${
                 index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             />

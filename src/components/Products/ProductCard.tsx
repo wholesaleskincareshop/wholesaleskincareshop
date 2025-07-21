@@ -53,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {product.isPublish && (
         <div
           // data-aos="fade-up"
-          className={`max-w-full border bg-white rounded-[24px]  overflow-hidden hover:shadow-xl transition-shadow duration-300 `}
+          className={`max-w-full border- bg-white rounded-[12px]  overflow-hidden hover:shadow-xl transition-shadow duration-300 `}
         >
           <div className="bg-white relative hover:border-primary overflow-hidden  rounded-lg ">
             <Link href={`/products/${productID}`}>
@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     : "/images/default-product.png"
                 }
                 alt={title}
-                className="w-full h-[170px] object-cover  hover:scale-110 transition-transform duration-300 "
+                className="w-full h-[170px] object-cover rounded-[12px]  hover:scale-110 transition-transform duration-300 "
               />
             </Link>
             <div className=" flex flex-col  p-2 items-center   bg-white bg-opacity-65">
@@ -73,19 +73,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 {" "}
                 {title}{" "}
               </Paragraph2>
-              <Paragraph2 className=" font-bold-  flex w-full mb-3">{`${currencySymbol} ${new Intl.NumberFormat(
+              <Paragraph2 className=" font-bold-  flex w-full mb-2">{`${currencySymbol} ${new Intl.NumberFormat(
                 "en-US",
                 {}
               ).format(Number(formattedPrice))}`}</Paragraph2>
               {product.availableAmount === "0" ? (
-                <div className=" flex px-2  justify-center py-1 sm:hidden- w-full items-center rounded-lg bg-black text-white text-center">
+                <div className=" flex px-2   justify-center py-1 sm:hidden- w-full items-center rounded-lg bg-black text-white text-center">
                   Out of Stock
                 </div>
               ) : (
                 <Button
                   text="Add to Cart"
                   onClick={handleAddToCart}
-                  additionalClasses="border-white justify-center flex text-center whitespace-nowrap font-semibold bg-primary w-full"
+                  border="border border-primary"
+                  color="text-primary hover:text-white"
+                  additionalClasses=" justify-center text-black flex text-center whitespace-nowrap font-semibold bg-transparent w-full"
                 />
               )}{" "}
             </div>

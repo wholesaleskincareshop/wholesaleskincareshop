@@ -18,10 +18,17 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+interface LGA {
+  id: string;
+  name: string;
+  shippingFee: number;
+}
+
 interface State {
   id: string;
   name: string;
   shippingFee: number;
+  lgas?: LGA[]; // Add this line
 }
 
 interface Country {
@@ -51,7 +58,13 @@ function Locations() {
   const [refetchKey, setRefetchKey] = useState(0); // Trigger refetch
   const [editingCountry, setEditingCountry] = useState<string | null>(null);
   const [editingState, setEditingState] = useState<string | null>(null);
+  const [editingLGA, setEditingLGA] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<"all" | "active">("all");
+  const [newLGAName, setNewLGAName] = useState("");
+  const [newLGAFee, setNewLGAFee] = useState("");
+  const [isAddingLGA, setIsAddingLGA] = useState<string | null>(null);
+  const [openState, setOpenState] = useState(null);
+  const [editLGAFee, setEditLGAFee] = useState(null); // Track which country is in edit mode
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -86,6 +99,10 @@ function Locations() {
     setOpenCountry((prev) => (prev === countryName ? null : countryName));
   };
 
+  const toggleLGAOpen = (stateName: any) => {
+    setOpenState((prev) => (prev === stateName ? null : stateName));
+  };
+
   const toggleAddNewState = (countryName: any) => {
     setOpenAddNewState((prev) => (prev === countryName ? null : countryName));
   };
@@ -111,6 +128,10 @@ function Locations() {
 
   const handleEditStateClick = (stateName: any) => {
     setEditStateFee(stateName); // Set the country being edited
+  };
+
+  const handleEditLGAClick = (lgaName: any) => {
+    setEditLGAFee(lgaName); // Set the country being edited
   };
 
   const handleSaveClick = async (country: Country) => {
@@ -206,6 +227,84 @@ function Locations() {
     }
   };
 
+  const handleDeleteLGA = async (
+    country: Country,
+    stateId: string,
+    lgaId: string
+  ) => {
+    try {
+      const countryDoc = doc(db, "shippingFees", country.code);
+      const countrySnap = await getDoc(countryDoc);
+
+      if (!countrySnap.exists()) {
+        console.error("Country document not found!");
+        return;
+      }
+
+      const countryData = countrySnap.data() as ShippingFeeData;
+
+      const updatedStates = countryData.states.map((state) => {
+        if (state.id === stateId) {
+          return {
+            ...state,
+            lgas: (state.lgas ?? []).filter((lga) => lga.id !== lgaId),
+          };
+        }
+        return state;
+      });
+
+      await setDoc(countryDoc, {
+        ...countryData,
+        states: updatedStates,
+      });
+
+      console.log(`Deleted LGA ${lgaId} successfully!`);
+      setRefetchKey((prev) => prev + 1); // Refresh UI
+    } catch (error) {
+      console.error("Error deleting LGA:", error);
+    }
+  };
+
+
+  const handleAddLGA = async (countryCode: string, stateId: string) => {
+    try {
+      const countryDoc = doc(db, "shippingFees", countryCode);
+      const countrySnap = await getDoc(countryDoc);
+
+      if (!countrySnap.exists()) return;
+
+      const countryData = countrySnap.data() as ShippingFeeData;
+
+      const updatedStates = countryData.states.map((state) => {
+        if (state.id === stateId) {
+          const newLGA = {
+            id: Date.now().toString(),
+            name: newLGAName,
+            shippingFee: parseFloat(newLGAFee),
+          };
+
+          return {
+            ...state,
+            lgas: [...(state.lgas || []), newLGA],
+          };
+        }
+        return state;
+      });
+
+      await setDoc(countryDoc, {
+        ...countryData,
+        states: updatedStates,
+      });
+
+      setNewLGAName("");
+      setNewLGAFee("");
+      setIsAddingLGA(null);
+      setRefetchKey((prev) => prev + 1); // Refresh
+    } catch (error) {
+      console.error("Error adding LGA:", error);
+    }
+  };
+
   return (
     <div>
       <div className="container1 pt-[100px] xl:pt-[104px] pb-[24px]">
@@ -265,8 +364,6 @@ function Locations() {
         </div>
 
         <div className="grid xl:grid-cols-3 grid-cols-1 mt-4 gap-4">
-          
-
           {filteredCountries && filteredCountries.length > 0
             ? filteredCountries.map((country: any) => (
                 <div
@@ -352,85 +449,247 @@ function Locations() {
                   </div>
 
                   {openCountry === country.name && (
-                    <div className="absolute py-2 right-0 top-[70px] z-20 mt-2 w-full max-h-[300px] overflow-hidden overflow-y-auto scrollbar-hide px-4 rounded-lg shadow-lg bg-white">
+                    <div className="absolute py-2 right-0 top-[70px] z-20 mt-2 w-full max-h-[300px] overflow-hidden overflow-y-auto scrollbar-hide px-2 rounded-lg  bg-bg_gray">
+                      <Paragraph2 className=" font-bold"> States</Paragraph2>
                       <div className="   py-2">
                         {country.states.map((state: any) => (
-                          <div
-                            key={state.id}
-                            className="flex justify-between w-full items-center border-b py-2"
-                          >
-                            <ParagraphLink1>{state.name}</ParagraphLink1>
+                          <>
+                            <div
+                              key={state.id}
+                              className="flex justify-between w-full px-2 rounded-lg bg-white  mb-2 items-center border-b py-2"
+                            >
+                              <div onClick={() => toggleLGAOpen(state.name)}>
+                                <ParagraphLink1>{state.name}</ParagraphLink1>
+                              </div>
 
-                            {editStateFee === state.id ? (
-                              // Edit Mode
-                              <div>
-                                <div className="border px-4 py-1 rounded-lg w-fit flex gap-2">
-                                  ₦
-                                  <input
-                                    type="text"
-                                    className="outline-none rounded-lg w-[50px]"
-                                    placeholder="0.00"
-                                    value={state.shippingFee}
-                                    onChange={(e) =>
-                                      setCountriesData((prev) =>
-                                        prev.map((c) =>
-                                          c.code === country.code
-                                            ? {
-                                                ...c,
-                                                states: c.states.map((s) =>
-                                                  s.id === state.id
+                              {editStateFee === state.id ? (
+                                // Edit Mode
+                                <div>
+                                  <div className="border px-4 py-1 rounded-lg w-fit flex gap-2">
+                                    ₦
+                                    <input
+                                      type="text"
+                                      className="outline-none rounded-lg w-[50px]"
+                                      placeholder="0.00"
+                                      value={state.shippingFee}
+                                      onChange={(e) =>
+                                        setCountriesData((prev) =>
+                                          prev.map((c) =>
+                                            c.code === country.code
+                                              ? {
+                                                  ...c,
+                                                  states: c.states.map((s) =>
+                                                    s.id === state.id
+                                                      ? {
+                                                          ...s,
+                                                          shippingFee:
+                                                            parseFloat(
+                                                              e.target.value
+                                                            ),
+                                                        }
+                                                      : s
+                                                  ),
+                                                }
+                                              : c
+                                          )
+                                        )
+                                      }
+                                    />
+                                  </div>
+                                  <div className="flex justify-between mt-2 text-[12px] text-p_black">
+                                    <button
+                                      onClick={() => {
+                                        handleDeleteState(country, state.id);
+                                        handleEditStateClick(null);
+                                      }}
+                                    >
+                                      Delete
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        if (editingCountry === country.code) {
+                                          setEditingState(state.id);
+                                        } else {
+                                          handleSaveClick(country);
+                                        }
+
+                                        handleEditStateClick(null);
+                                      }}
+                                    >
+                                      Save
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : (
+                                // Normal View
+                                <div
+                                  className="borde px-2 py-1 rounded-lg cursor-pointer"
+                                  onClick={() => handleEditStateClick(state.id)}
+                                >
+                                  ₦{" "}
+                                  {new Intl.NumberFormat("en-US", {}).format(
+                                    Number(state.shippingFee)
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                            {openState === state.name && (
+                              <div className=" bg-slate-200 mb-4 rounded-lg px-2">
+                                {state.lgas?.map((lga: any) => (
+                                  <div
+                                    key={lga.id}
+                                    className="flex justify-between py-2 border-b border-gray-500 items-center"
+                                  >
+                                    <ParagraphLink1>{lga.name}</ParagraphLink1>
+
+                                    {/* <p>₦{lga.shippingFee}</p> */}
+
+                                    {editLGAFee === lga.id ? (
+                                      // Edit Mode
+                                      <div>
+                                        <div className="border bg-white px-4 py-1 rounded-lg w-fit flex gap-2">
+                                          ₦
+                                          <input
+                                            type="text"
+                                            className="outline-none rounded-lg w-[50px]"
+                                            placeholder="0.00"
+                                            value={lga.shippingFee}
+                                            onChange={(e) =>
+                                              setCountriesData((prev) =>
+                                                prev.map((c) =>
+                                                  c.code === country.code
                                                     ? {
-                                                        ...s,
-                                                        shippingFee: parseFloat(
-                                                          e.target.value
+                                                        ...c,
+                                                        states: c.states.map(
+                                                          (s) =>
+                                                            s.id === state.id
+                                                              ? {
+                                                                  ...s,
+                                                                  lgas: (
+                                                                    s.lgas ?? []
+                                                                  ).map((lg) =>
+                                                                    lg.id ===
+                                                                    lga.id
+                                                                      ? {
+                                                                          ...lg,
+                                                                          shippingFee:
+                                                                            parseFloat(
+                                                                              e
+                                                                                .target
+                                                                                .value
+                                                                            ),
+                                                                        }
+                                                                      : lg
+                                                                  ),
+                                                                }
+                                                              : s
                                                         ),
                                                       }
-                                                    : s
-                                                ),
-                                              }
-                                            : c
-                                        )
-                                      )
-                                    }
-                                  />
-                                </div>
-                                <div className="flex justify-between mt-2 text-[12px] text-p_black">
-                                  <button
-                                    onClick={() => {
-                                      handleDeleteState(country, state.id);
-                                      handleEditStateClick(null);
-                                    }}
-                                  >
-                                    Delete
-                                  </button>
-                                  <button
-                                    onClick={() => {
-                                      if (editingCountry === country.code) {
-                                        setEditingState(state.id);
-                                      } else {
-                                        handleSaveClick(country);
-                                      }
+                                                    : c
+                                                )
+                                              )
+                                            }
+                                          />
+                                        </div>
+                                        <div className="flex justify-between mt-2 text-[12px] text-p_black">
+                                          <button
+                                            onClick={() => {
+                                              handleDeleteLGA(
+                                                country,
+                                                state.id,
+                                                lga.id
+                                              );
 
-                                      handleEditStateClick(null);
-                                    }}
-                                  >
-                                    Save
-                                  </button>
+                                              handleEditLGAClick(null);
+                                            }}
+                                          >
+                                            Delete
+                                          </button>
+                                          <button
+                                            onClick={() => {
+                                              if (
+                                                editingCountry === country.code
+                                              ) {
+                                                setEditingLGA(lga.id);
+                                              } else {
+                                                handleSaveClick(country);
+                                              }
+
+                                              handleEditLGAClick(null);
+                                            }}
+                                          >
+                                            Save
+                                          </button>
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      // Normal View
+                                      <div
+                                        className="borde px-2 py-1 rounded-lg cursor-pointer"
+                                        onClick={() =>
+                                          handleEditLGAClick(lga.id)
+                                        }
+                                      >
+                                        ₦{" "}
+                                        {new Intl.NumberFormat(
+                                          "en-US",
+                                          {}
+                                        ).format(Number(lga.shippingFee))}
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                                <div className=" flex flex-col gap-4 items-center w-full">
+                                  {" "}
+                                  {isAddingLGA !== state.id && (
+                                    <button
+                                      className="mt-6 mb-2 border-b px-2 py-1 border-black text-[12px] "
+                                      onClick={() => setIsAddingLGA(state.id)}
+                                    >
+                                      Add new LGA
+                                    </button>
+                                  )}
+                                  {isAddingLGA === state.id && (
+                                    <>
+                                      <div className=" my-2 w-full max-h-[300px] overflow-hidden overflow-y-auto scrollbar-hide px-4 rounded-lg  bg-white">
+                                        <div className="flex justify-between items-center borde py-2">
+                                          <input
+                                            type="text"
+                                            className="border p-2 outline-none rounded-lg w-[60%]"
+                                            placeholder="Enter LGA/City name"
+                                            value={newLGAName}
+                                            onChange={(e) =>
+                                              setNewLGAName(e.target.value)
+                                            }
+                                          />
+                                          <div className="border px-4 py-2 rounded-lg w-fit flex gap-2">
+                                            ₦{" "}
+                                            <input
+                                              type="text"
+                                              className="outline-none rounded-lg w-[50px]"
+                                              placeholder="0.00"
+                                              value={newLGAFee}
+                                              onChange={(e) =>
+                                                setNewLGAFee(e.target.value)
+                                              }
+                                            />
+                                          </div>
+                                        </div>
+                                        <button
+                                          onClick={() =>
+                                            handleAddLGA(country.code, state.id)
+                                          }
+                                          className="text-center w-full cursor-pointer text-primary py-2"
+                                        >
+                                          Save
+                                        </button>
+                                      </div>
+                                    </>
+                                  )}
                                 </div>
-                              </div>
-                            ) : (
-                              // Normal View
-                              <div
-                                className="borde px-2 py-1 rounded-lg cursor-pointer"
-                                onClick={() => handleEditStateClick(state.id)}
-                              >
-                                ₦{" "}
-                                {new Intl.NumberFormat("en-US", {}).format(
-                                  Number(state.shippingFee)
-                                )}
                               </div>
                             )}
-                          </div>
+                          </>
                         ))}
                       </div>
 

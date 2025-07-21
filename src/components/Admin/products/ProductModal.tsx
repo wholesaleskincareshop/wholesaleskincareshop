@@ -540,7 +540,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                 </div>
                 <div className=" grid grid-cols-2 gap-2">
                   <div>
-                    <label>Current Price</label>
+                    <label>Single Price</label>
                     <Field name="currentPrice">
                       {({ field, form }: FieldProps<string>) => (
                         <input
@@ -586,7 +586,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                     />
                   </div>
                 </div>
-                <div className=" grid grid-cols-2 gap-2 ">
+                <div className=" grid grid-cols-1 sm:grid-cols-2 gap-2 ">
                   <div>
                     <label>Available Quantity</label>
                     <Field
@@ -602,20 +602,30 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                     />
                   </div>{" "}
                   <div>
-                    <label>Product Weight/Packaging Cost</label>
+                    <label>Product Weight</label>
                     <Field name="productWeight">
                       {({ field, form }: FieldProps<string>) => (
-                        <input
-                          {...field}
-                          type="text"
-                          placeholder="Enter Packaging Price"
-                          value={formatCurrency(field.value || "")}
-                          onChange={(e) => {
-                            const rawValue = e.target.value.replace(/\D/g, ""); // Extract raw numeric value
-                            form.setFieldValue("productWeight", rawValue);
-                          }}
-                          className="w-full outline-none border-primary border p-2 rounded-lg my-2"
-                        />
+                        
+
+                        <div className="w-full my-2 flex items-center border border-primary rounded-lg overflow-hidden">
+                              <input
+                                {...field}
+                                type="text"
+                                placeholder="Enter Weight"
+                                value={(field.value || "")}
+                                onChange={(e) => {
+                                  const rawValue = e.target.value.replace(
+                                    /\D/g,
+                                    ""
+                                  ); // Extract raw numeric value
+                                  form.setFieldValue("productWeight", rawValue);
+                                }}
+                                className="flex-grow p-2 outline-none"
+                              />
+                              <span className="px-3 bg-gray-100 text-sm text-gray-700 border-l border-primary">
+                                kg
+                              </span>
+                            </div>
                       )}
                     </Field>
                     <ErrorMessage
@@ -671,7 +681,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                     className="text-red-500 text-[12px]"
                   />
                 </div>
-                <div>
+                {/* <div>
                   <label>Sub Category</label>
                   {loadingCategories ? (
                     <p>Loading sub categories...</p>
@@ -704,7 +714,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                     component="div"
                     className="text-red-500 text-[12px]"
                   />
-                </div>
+                </div> */}
                 <div>
                   <label>Description</label>
                   <Field

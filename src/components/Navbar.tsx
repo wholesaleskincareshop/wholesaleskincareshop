@@ -44,8 +44,8 @@ function Navbar() {
         ["/contact-us", "/privacy-policy", "/terms-of-service"].includes(
           pathname
         )
-          ? "bg-bg_gray- bg-white py-[8px]- border-b border-secondary-  fixed flex w-full z-20 py-[8px] "
-          : " bg-white py-[8px] fixed flex w-full border-b border-secondary- z-20"
+          ? "bg-bg_gray- bg-white py-[8px]-  fixed flex w-full z-20 py-[8px] "
+          : " bg-white py-[8px] fixed flex w-full z-20"
       }
     >
       <div className="  w-full">
@@ -65,13 +65,13 @@ function Navbar() {
             <img
               src="/logo1.jpg"
               alt=""
-              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-lg"
+              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-sm"
             />
-            {/* <img
-              src="/images/logo3.png"
-              alt=""
-              className="h-[30px] xl:hidden"
-            /> */}
+            <div className=" text-center border px-2 rounded-sm text-[14px] hidden">
+              {" "}
+              Wholesale Skincare <br />{" "}
+              <span className="text-[12px]">Shop </span>{" "}
+            </div>{" "}
           </Link>
           {/* <div className=" relative">
             {" "}
