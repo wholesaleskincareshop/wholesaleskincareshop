@@ -52,15 +52,31 @@ const ProductCartCard: React.FC<ProductCartCardProps> = ({
             <Paragraph1 className="text-gray-500">Qt:</Paragraph1>
             <div className="flex gap-4 items-center justify-between border rounded-lg px-4">
               <button
-                onClick={() => onQuantityChange(product.id, -1)}
-                className="text-gray-500"
+                onClick={() => {
+                  if (product.quantity > 1) {
+                    onQuantityChange(product.id, -1);
+                  }
+                }}
+                className={`text-gray-500 ${
+                  product.quantity <= 1 ? "opacity-40 cursor-not-allowed" : ""
+                }`}
+                disabled={product.quantity <= 1}
               >
                 -
               </button>
               <p>{product.quantity}</p>
               <button
-                onClick={() => onQuantityChange(product.id, 1)}
-                className="text-gray-500"
+                onClick={() => {
+                  if (product.quantity < product.availableAmount) {
+                    onQuantityChange(product.id, 1);
+                  }
+                }}
+                className={`text-gray-500 ${
+                  product.quantity >= product.availableAmount
+                    ? "opacity-40 cursor-not-allowed"
+                    : ""
+                }`}
+                disabled={product.quantity >= product.availableAmount}
               >
                 +
               </button>

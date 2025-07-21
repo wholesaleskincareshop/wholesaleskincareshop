@@ -61,34 +61,68 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
     <div>
       <Header4>How Many?</Header4>
       <div className="grid grid-cols-2 gap-2 sm:gap-4 mt-2">
-        {packOptions.map((option, index) => (
-          <button
-            key={option.label}
-            onClick={() => setSelectedPackIndex(index)}
-            className={`${
-              selectedPackIndex === index
-                ? "bg-[#e6f9fb] border-primary"
-                : "border-gray-300"
-            } flex flex-col items-center justify-center border-4 rounded-[12px] py-2 px-4`}
-          >
-            <Header4>{option.label}</Header4>
-            <Paragraph1>
-              (
-              {`x${option.multiplier} piece${option.multiplier > 1 ? "s" : ""}`}
-              )
-            </Paragraph1>
-          </button>
-        ))}
+        {packOptions.map((option, index) => {
+          const isDisabled = option.multiplier > product.availableAmount;
+
+          return (
+            <button
+              key={option.label}
+              onClick={() => {
+                if (!isDisabled) setSelectedPackIndex(index);
+              }}
+              className={`${
+                selectedPackIndex === index && !isDisabled
+                  ? "bg-[#e6f9fb] border-primary"
+                  : "border-gray-300"
+              } ${
+                isDisabled ? "bg-gray-200 cursor-not-allowed opacity-60" : ""
+              } 
+        flex flex-col items-center justify-center border-4 rounded-[12px] py-2 px-4`}
+              disabled={isDisabled}
+            >
+              <Header4>{option.label}</Header4>
+              <Paragraph1>
+                (
+                {`x${option.multiplier} piece${
+                  option.multiplier > 1 ? "s" : ""
+                }`}
+                )
+              </Paragraph1>
+            </button>
+          );
+        })}
       </div>
 
       <div className="mt-4">
         <Header4>Select Quantity:</Header4>
         <div className="border-4 w-fit rounded-[12px] flex items-center px-4 py-1 mt-2 gap-4">
-          <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
+          <button
+            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+            disabled={quantity <= 1}
+            className={`${
+              quantity <= 1 ? "opacity-40 cursor-not-allowed" : ""
+            }`}
+          >
             <MinusIcon />
           </button>
           <Paragraph1>{quantity}</Paragraph1>
-          <button onClick={() => setQuantity((q) => q + 1)}>
+          <button
+            onClick={() => {
+              const nextQuantity = quantity + 1;
+              const nextTotal = nextQuantity * selectedPack.multiplier;
+              if (nextTotal <= product.availableAmount) {
+                setQuantity(nextQuantity);
+              }
+            }}
+            disabled={
+              quantity * selectedPack.multiplier >= product.availableAmount
+            }
+            className={`${
+              quantity * selectedPack.multiplier >= product.availableAmount
+                ? "opacity-40 cursor-not-allowed"
+                : ""
+            }`}
+          >
             <Plus />
           </button>
         </div>
