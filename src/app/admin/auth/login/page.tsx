@@ -1,14 +1,15 @@
-import LoginForm from '@/components/Admin/auth/LoginForm'
-import SignUpForm from '@/components/Admin/auth/SignUpForm'
-import React from 'react'
+import LoginForm from "@/components/Admin/auth/LoginForm";
+import SignUpForm from "@/components/Admin/auth/SignUpForm";
+import React from "react";
 
 function page() {
   return (
-    <div><LoginForm />
+    <div>
+      <LoginForm />
       {/* uncomment the signUp form to create an admin account hide it back */}
-      <SignUpForm />
-      </div>
-  )
+      {/* <SignUpForm /> */}
+    </div>
+  );
 }
 
-export default page
+export default page;
