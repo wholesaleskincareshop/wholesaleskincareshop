@@ -605,29 +605,28 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
                     <label>Product Weight</label>
                     <Field name="productWeight">
                       {({ field, form }: FieldProps<string>) => (
-                        
-
                         <div className="w-full my-2 flex items-center border border-primary rounded-lg overflow-hidden">
-                              <input
-                                {...field}
-                                type="text"
-                                placeholder="Enter Weight"
-                                value={(field.value || "")}
-                                onChange={(e) => {
-                                  const rawValue = e.target.value.replace(
-                                    /\D/g,
-                                    ""
-                                  ); // Extract raw numeric value
-                                  form.setFieldValue("productWeight", rawValue);
-                                }}
-                                className="flex-grow p-2 outline-none"
-                              />
-                              <span className="px-3 bg-gray-100 text-sm text-gray-700 border-l border-primary">
-                                kg
-                              </span>
-                            </div>
+                          <input
+                            {...field}
+                            type="text"
+                            placeholder="Enter Weight"
+                            value={field.value || ""}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              // Allow numbers with a single optional decimal point
+                              if (/^\d*\.?\d*$/.test(value)) {
+                                form.setFieldValue("productWeight", value);
+                              }
+                            }}
+                            className="flex-grow p-2 outline-none"
+                          />
+                          <span className="px-3 bg-gray-100 text-sm text-gray-700 border-l border-primary">
+                            kg
+                          </span>
+                        </div>
                       )}
                     </Field>
+
                     <ErrorMessage
                       name="productWeight"
                       component="div"

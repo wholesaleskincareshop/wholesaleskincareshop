@@ -84,8 +84,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 <Button
                   text="Add to Cart"
                   onClick={handleAddToCart}
-                  border="border border-primary"
-                  color="text-primary hover:text-white"
+                  border="border border-black"
+                  color="text-black hover:text-white"
                   additionalClasses=" justify-center text-black flex text-center whitespace-nowrap font-semibold bg-transparent w-full"
                 />
               )}{" "}

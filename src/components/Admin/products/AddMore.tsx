@@ -70,7 +70,7 @@ const initialValues: ProductValues = {
   isElite: false,
   isSpecial: false,
   isBudget: false,
-  isPublish: false
+  isPublish: false,
 };
 
 interface Category {
@@ -92,7 +92,6 @@ interface AddMoreProps {
 }
 
 const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
-
   const [isAddMoreOpen, setIsAddMoreOpen] = useState(false);
   const [isAddProductOpen, setIsAddProductOpen] = useState(false);
   const [formData, setFormData] = useState(initialValues);
@@ -211,8 +210,6 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
       toast.error("Failed to add product.");
     }
   };
-
-
 
   const formatCurrency = (value: any) => {
     if (!value) return "";
@@ -531,13 +528,13 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
                                 {...field}
                                 type="text"
                                 placeholder="Enter Weight"
-                                value={(field.value || "")}
+                                value={field.value || ""}
                                 onChange={(e) => {
-                                  const rawValue = e.target.value.replace(
-                                    /\D/g,
-                                    ""
-                                  ); // Extract raw numeric value
-                                  form.setFieldValue("productWeight", rawValue);
+                                  let value = e.target.value;
+                                  // Allow only numbers and a single decimal point
+                                  if (/^[0-9]*\.?[0-9]*$/.test(value)) {
+                                    form.setFieldValue("productWeight", value);
+                                  }
                                 }}
                                 className="flex-grow p-2 outline-none"
                               />
@@ -547,6 +544,7 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
                             </div>
                           )}
                         </Field>
+
                         <ErrorMessage
                           name="productWeight"
                           component="div"
@@ -692,6 +690,6 @@ const AddMore: React.FC<AddMoreProps> = ({ onRefetch }) => {
       </div>
     </div>
   );
-}
+};
 
 export default AddMore;
