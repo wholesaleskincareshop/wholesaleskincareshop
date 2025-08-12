@@ -98,7 +98,7 @@ function Footer() {
             <div className=" flex flex-col py-4 gap-2 items-center- justify-center-">
               <div className=" flex gap-4 items-center mb-2">
                 <Link
-                  href="https://www.instagram.com/grandiosegrin"
+                  href="https://www.instagram.com/wholesale_skincare_shop?igsh=aTJ3bHd2ZDgzenky&utm_source=qr"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -109,7 +109,7 @@ function Footer() {
                   />
                 </Link>
                 <Link
-                  href="https://www.facebook.com/"
+                  href="https://www.facebook.com/105210351534035"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -119,8 +119,8 @@ function Footer() {
                     className="w-[20px] h-[20px]"
                   />
                 </Link>
-                <Link
-                  href="https://www.x.com/"
+                {/* <Link
+                  href="https://www.instagram.com/wholesale_skincare_shop?igsh=aTJ3bHd2ZDgzenky&utm_source=qr"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -129,7 +129,7 @@ function Footer() {
                     alt=""
                     className="w-[20px] h-[20px]"
                   />
-                </Link>
+                </Link> */}
               </div>
 
               <div className=" flex items-center gap-2 text-[#ECECEC] ">
@@ -229,7 +229,7 @@ function Footer() {
               <div className=" flex flex-col p-4- gap-2 items-center- justify-center-">
                 <div className=" flex gap-4 items-center mb-4">
                   <Link
-                    href="https://www.instagram.com/grandiosegrin"
+                    href="https://www.instagram.com/wholesale_skincare_shop?igsh=aTJ3bHd2ZDgzenky&utm_source=qr"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -239,20 +239,20 @@ function Footer() {
                       className="w-[14px] h-[14px]"
                     />
                   </Link>
-                  <Link href="/">
+                  <Link href="https://www.facebook.com/105210351534035">
                     <img
                       src="https://res.cloudinary.com/dcb4ilgmr/image/upload/v1729676725/utilities/templates/facebook-app-symbol_x2whit.png"
                       alt="facebook"
                       className="w-[14px] h-[14px]"
                     />
                   </Link>
-                  <Link href="/">
+                  {/* <Link href="https://www.instagram.com/wholesale_skincare_shop?igsh=aTJ3bHd2ZDgzenky&utm_source=qr">
                     <img
                       src="https://res.cloudinary.com/dcb4ilgmr/image/upload/v1729675779/utilities/templates/twitter_3_sihd1i.png"
                       alt=""
                       className="w-[14px] h-[14px]"
                     />
-                  </Link>
+                  </Link> */}
                 </div>
                 <div className=" flex items-center gap-2 text-[#ECECEC] ">
                   <svg

@@ -47,7 +47,7 @@ export const newContactMail = `
                     border-radius: 50px;
                     height: 158px;
                   "
-                src="https://res.cloudinary.com/dcb4ilgmr/image/upload/v1729544814/utilities/templates/GetBee_1_bxzwaf.png"
+                src="https://res.cloudinary.com/dqziqldkb/image/upload/v1752326559/6010238764733025601_giaz9n.jpg"
                 alt="">
               </td>
             </tr>
@@ -66,8 +66,7 @@ export const newContactMail = `
                   Hello {{name}},
                 </h1>
                 <p style="font-size: 18px; color: #4b5563; margin-bottom: 32px">
-                  You have a new submission by a potential client at Salford
-                  Studio. Login to your dashboard to see it.
+                  You have a new submission by a potential client at Wholesale Skincare Shop Admin. Login to your dashboard to see it.
                 </p>
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
@@ -76,7 +75,7 @@ export const newContactMail = `
                         href="{{url}}"
                         style="
                           display: inline-block;
-                          background-color: #f48c04;
+                          background-color: #09c5d8;
                           color: white;
                           text-decoration: none;
                           padding: 12px 48px;
@@ -98,7 +97,7 @@ export const newContactMail = `
             <tr>
               <td
                 style="
-                  background-color: #f48c04;
+                  background-color: #09c5d8;
                   color: white;
                   padding: 16px;
                   text-align: center;

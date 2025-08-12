@@ -417,7 +417,7 @@ const Checkout: React.FC<CheckoutProps> = ({
       name: `${firstName} ${lastName}`,
     },
     customizations: {
-      title: "GrandioseGrin Pay",
+      title: "Wholesale Skincare Shop Payment",
       description: "Payment for items in cart",
       logo: "https://res.cloudinary.com/dtipo8fg3/image/upload/v1732334982/favicon_hpd5wv.png",
     },
@@ -919,9 +919,9 @@ const Checkout: React.FC<CheckoutProps> = ({
             className="space-y-6 p-4  max-w-[793px]  min-h-screen relative"
           >
             <img
-              src={logoUrl}
+              src="/logo1.jpg"
               alt="Company Logo"
-              className="mx-auto w- h-[25px]"
+              className="mx-auto w- h-[65px]"
             />
 
             <p className=" text-center text-gray-500 text-[12px]">
