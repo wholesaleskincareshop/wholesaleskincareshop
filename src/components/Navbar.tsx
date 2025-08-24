@@ -62,16 +62,16 @@ function Navbar() {
             </button>
           </div>
           <Link href="/">
-            {/* <img
-              src="/logo2.png"
+            <img
+              src="/logo.png"
               alt=""
-              className="sm:h-[50px] h-[40px] xl:flex hidden - rounded-sm"
-            /> */}
-            <div className=" text-center border border-primary px-2  uppercase rounded-sm text-[12px] hidden-">
+              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-sm"
+            />
+            {/* <div className=" text-center border border-primary px-2  uppercase rounded-sm text-[12px] hidden-">
               {" "}
               Wholesale Skincare <br />{" "}
               <span className="text-[16px] font-bold">Shop </span>{" "}
-            </div>{" "}
+            </div>{" "} */}
           </Link>
           {/* <div className=" relative">
             {" "}
