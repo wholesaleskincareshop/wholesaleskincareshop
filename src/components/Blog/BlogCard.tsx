@@ -1,5 +1,5 @@
 import React from "react";
-import { Header3, Paragraph2 } from "../Text";
+import { Header3, HeaderAny, Paragraph2 } from "../Text";
 
 interface BlogCardProps {
   title: string;
@@ -22,7 +22,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         alt={title}
       />
       <div className="p-4">
-        <Header3 className="text-2xl font-semibold text-gray-800 mb-2">{title}</Header3>
+        <HeaderAny className="text-[16px] font-semibold text-gray-800 mb-2">{title}</HeaderAny>
         <Paragraph2 className="text-gray-600 mb-4">
           {" "}
           {description.split(" ").slice(0, 11).join(" ")}...

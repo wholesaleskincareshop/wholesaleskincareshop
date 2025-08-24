@@ -72,7 +72,7 @@ function Questions() {
         >
           <div className=" flex justify-center flex-col items-center mb-[30px]">
             <Header3 className=" text-center">
-              Frequently Asked <span className="text-primary">Questions</span>
+              Frequently Asked <span className="text-primary-">Questions</span>
             </Header3>
             <Paragraph1 className="max-w-[883px] text-center">
               Get quick answers to common questions about our products,

@@ -5,6 +5,7 @@ import {
   Header3,
   Header4,
   Paragraph1,
+  Paragraph3,
   ParagraphLink1,
 } from "@/components/Text";
 import Link from "next/link";
@@ -33,7 +34,7 @@ const Section2: React.FC<Section2Props> = ({ featuredProducts }) => {
           // data-aos="fade-up"
         >
           <Header3>
-            <span className="text-primary">Featured</span> Products
+            <span className="text-primary-">Featured</span> Products
           </Header3>
           <Paragraph1 className="max-w-[883px] sm:flex hidden">
             Explore our top-selling skincare essentials — handpicked for spas,
@@ -46,13 +47,18 @@ const Section2: React.FC<Section2Props> = ({ featuredProducts }) => {
           {featuredProducts && featuredProducts.length > 0
             ? featuredProducts.slice(0, 8).map((product: any) => (
                 <div className=" relative  ">
-                  <div className=" absolute right-2 top-0 z-10">
+                  {/* <div className=" absolute right-2 top-0 z-10">
                     <img
                       src="https://res.cloudinary.com/dqziqldkb/image/upload/v1753105793/bookmark_n2rzdd.png"
                       alt=""
                       className=" h-8 w-8"
                     />
-                  </div>
+                  </div> */}
+                  <div className=" absolute right-1 top-1 z-10 bg-black bg-opacity-70 rounded-md px-2">
+                    <Paragraph3 className="text-white bold text-[12px]">
+                      Featured
+                    </Paragraph3>
+                  </div>{" "}
                   <ProductCard
                     key={product.id}
                     image={product.productImageURL1}

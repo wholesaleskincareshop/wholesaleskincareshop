@@ -23,7 +23,7 @@ function Section4() {
           data-aos="fade-up"
         >
           <Header3 className="text-center">
-            Our <span className="text-primary">Simple 3-Step</span> Buying
+            Our <span className="text-primary-">Simple 3-Step</span> Buying
             Process
           </Header3>
           <Paragraph1 className="max-w-[883px] text-center">

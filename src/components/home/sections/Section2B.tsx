@@ -34,7 +34,7 @@ const Section2: React.FC<Section2Props> = ({ featuredProducts }) => {
           data-aos="fade-up"
         >
           <Header3>
-            <span className="text-primary">Trending</span> Products
+            <span className="text-primary-">Trending</span> Products
           </Header3>
           <Paragraph1 className="max-w-[883px] sm:flex hidden">
             Discover our most in-demand skincare products — trusted by
@@ -48,7 +48,7 @@ const Section2: React.FC<Section2Props> = ({ featuredProducts }) => {
             ? featuredProducts.slice(0, 8).map((product: any) => (
                 <div className=" min-w-[280px] relative">
                   <div className=" absolute right-1 top-1 z-10 bg-black bg-opacity-70 rounded-md px-2">
-                                      <Paragraph3 className="text-white bold text-[12px]">
+                    <Paragraph3 className="text-white bold text-[12px]">
                       Best selling
                     </Paragraph3>
                   </div>{" "}

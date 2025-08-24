@@ -24,7 +24,7 @@ function section6() {
         {" "}
         <div className="flex flex-col xl:gap-[24px] items-center w-full text-center pb-[64px]">
           <Header1Plus>
-            Discover Your Best <span className="text-primary">Skin</span> with
+            Discover Your Best <span className="text-primary-">Skin</span> with
             Us
           </Header1Plus>
           <Paragraph1 className="max-w-[883px] text-center">

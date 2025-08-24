@@ -62,15 +62,15 @@ function Navbar() {
             </button>
           </div>
           <Link href="/">
-            <img
-              src="/logo1.jpg"
+            {/* <img
+              src="/logo2.png"
               alt=""
-              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-sm"
-            />
-            <div className=" text-center border px-2 rounded-sm text-[14px] hidden">
+              className="sm:h-[50px] h-[40px] xl:flex hidden - rounded-sm"
+            /> */}
+            <div className=" text-center border border-primary px-2  uppercase rounded-sm text-[12px] hidden-">
               {" "}
               Wholesale Skincare <br />{" "}
-              <span className="text-[12px]">Shop </span>{" "}
+              <span className="text-[16px] font-bold">Shop </span>{" "}
             </div>{" "}
           </Link>
           {/* <div className=" relative">

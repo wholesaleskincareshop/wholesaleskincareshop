@@ -93,8 +93,8 @@ function Overview() {
   return (
     <div>
       <HeroSection />
-      <Section2 featuredProducts={featuredProducts} />
       <Section2B featuredProducts={trendingProducts} />
+      <Section2 featuredProducts={featuredProducts} />
       <Section4 />
       <Section3 latestProducts={latestProducts} />
       <Section5 />

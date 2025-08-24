@@ -33,7 +33,7 @@ const Section3: React.FC<Section3Props> = ({ latestProducts }) => {
           // data-aos="fade-up"
         >
           <Header3>
-            Newest <span className="text-primary">Skincare</span> Essentials
+            Newest <span className="text-primary-">Skincare</span> Essentials
           </Header3>
           <Paragraph1 className="max-w-[883px] sm:flex hidden">
             Explore our latest arrivals — carefully selected for their
