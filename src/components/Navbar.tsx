@@ -64,7 +64,7 @@ function Navbar() {
           <Link href="/">
             <img
               src="/logo.png"
-              alt=""
+              alt="logo"
               className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-sm"
             />
             {/* <div className=" text-center border border-primary px-2  uppercase rounded-sm text-[12px] hidden-">
@@ -73,6 +73,7 @@ function Navbar() {
               <span className="text-[16px] font-bold">Shop </span>{" "}
             </div>{" "} */}
           </Link>
+
           {/* <div className=" relative">
             {" "}
             <div className=" border-2 border-primary rounded-full w-2 h-2 p- absolute top-1 -left-1 "></div>
