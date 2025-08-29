@@ -20,9 +20,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
         className="w-full h-48 object-cover"
         src={image.replace("/upload/", "/upload/w_1000,f_auto/")}
         alt={title}
+        loading="lazy"
       />
       <div className="p-4">
-        <HeaderAny className="text-[16px] font-semibold text-gray-800 mb-2">{title}</HeaderAny>
+        <HeaderAny className="text-[16px] font-semibold text-gray-800 mb-2">
+          {title}
+        </HeaderAny>
         <Paragraph2 className="text-gray-600 mb-4">
           {" "}
           {description.split(" ").slice(0, 11).join(" ")}...

@@ -41,6 +41,7 @@ const BlogCard: React.FC<BlogValues> = ({
           className="w-full h-48 object-cover"
           src={blogImageURL1.replace("/upload/", "/upload/w_1000,f_auto/")}
           alt={title}
+          loading="lazy"
         />
         <div className="p-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-2">{title}</h2>

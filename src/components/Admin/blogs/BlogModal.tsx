@@ -198,7 +198,8 @@ const BlogModal: React.FC<ModalProps> = ({ blog, onClose }) => {
                           <img
                             src={values.blogImageURL1}
                             alt="Uploaded Preview"
-                            className="h-full w-full object-cover"
+                              className="h-full w-full object-cover"
+                          
                           />
                         </div>
                       )}

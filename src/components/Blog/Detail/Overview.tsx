@@ -106,6 +106,7 @@ const BlogPage: React.FC = () => {
               src={blog.blogImageURL1}
               alt="Blog Cover"
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
           <div

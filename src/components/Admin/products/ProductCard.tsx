@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Paragraph1, Paragraph2, ParagraphLink2 } from "@/components/Text";
 import Button from "@/components/Button";
 import ProductModal from "./ProductModal";
+import Image from "next/image";
 
 interface ProductCardProps {
   image: string;
@@ -40,14 +41,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
         onClick={handleEditClick}
         className="bg-white relative p-2 hover:border-primary cursor-pointer border-2 rounded-lg"
       >
-        <img
+        <Image
           src={
             image
               ? image.replace("/upload/", "/upload/w_500,f_auto/")
               : "/images/default-product.png"
           }
           alt={title}
-          className="w-full h-[120px] object-cover rounded-lg hover:scale-110 transition-transform duration-300 "
+          width={500}
+          height={120}
+          className="w-full h-[120px] object-cover rounded-lg hover:scale-110 transition-transform duration-300"
         />
         <div
           className={`absolute top-2 left-2 px-2 py-1 rounded-lg ${

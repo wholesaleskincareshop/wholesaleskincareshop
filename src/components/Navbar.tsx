@@ -65,7 +65,7 @@ function Navbar() {
             <img
               src="/logo.png"
               alt="logo"
-              className="sm:h-[50px] h-[40px] xl:flex hidden- rounded-sm"
+              className="sm:h-[50px] h-[45px] xl:flex hidden- rounded-sm"
             />
             {/* <div className=" text-center border border-primary px-2  uppercase rounded-sm text-[12px] hidden-">
               {" "}

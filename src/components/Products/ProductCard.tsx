@@ -5,6 +5,7 @@ import Link from "next/link";
 import useCartStore from "../../stores/cartStore";
 import AOS from "aos";
 import { useExchangeRateStore } from "@/stores/exchangeRateStore";
+import Image from "next/image";
 
 interface ProductCardProps {
   image: string;
@@ -58,14 +59,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="bg-white relative hover:border-primary overflow-hidden  rounded-lg ">
             <Link href={`/products/${productID}`}>
               {" "}
-              <img
+              <Image
                 src={
                   image
                     ? image.replace("/upload/", "/upload/w_500,f_auto/")
                     : "/images/default-product.png"
                 }
                 alt={title}
-                className="w-full h-[200px] object-cover rounded-[12px]  hover:scale-110 transition-transform duration-300 "
+                width={500}
+                height={200}
+                className="w-full h-[200px] object-cover rounded-[12px] hover:scale-110 transition-transform duration-300"
               />
             </Link>
             <div className=" flex flex-col  p-2 items-center   bg-white bg-opacity-65">

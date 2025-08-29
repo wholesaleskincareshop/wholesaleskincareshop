@@ -4,9 +4,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "aos/dist/aos.css";
-import Head from "next/head"; // Import Head for adding custom scripts
 import NetworkStatusChecker from "./NetworkStatusChecker";
 import { Toaster } from "react-hot-toast"; // Import Toaster
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -72,7 +72,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         {/* Add Cloudinary widget script */}
         <script
           src="https://widget.cloudinary.com/v2.0/global/all.js"
@@ -80,11 +80,13 @@ export default function RootLayout({
           async
         ></script>
         {/* Google Analytics */}
-        <script
-          async
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-KZPMGM3T62"
-        ></script>
-        <script
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -94,7 +96,7 @@ export default function RootLayout({
             `,
           }}
         />
-      </Head>
+      </head>
       <body className=" bg-[#f1efe8]-">
         <Toaster />
         <NetworkStatusChecker />

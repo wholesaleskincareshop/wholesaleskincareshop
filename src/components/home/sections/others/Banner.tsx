@@ -41,7 +41,8 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
               alt={`Banner ${index + 1}`}
               className={`absolute top-0 left-0 w-full sm:h-[350px] h-[200px] object-cover transition-opacity duration-700 ${
                 index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
+                }`}
+              loading="lazy"
             />
           ))}
         </div>
@@ -88,7 +89,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
       </div>
 
       {/* Dots */}
-      <div className="flex hidden justify-center mt-3 space-x-2">
+      <div className="flex- hidden justify-center mt-3 space-x-2">
         {imageUrls.map((_, i) => (
           <span
             key={i}
