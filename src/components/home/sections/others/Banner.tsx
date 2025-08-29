@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 
 interface BannerCarouselProps {
@@ -6,29 +7,16 @@ interface BannerCarouselProps {
 
 const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loaded, setLoaded] = useState<boolean[]>([]);
-
-  // Preload images and track load status
-  useEffect(() => {
-    const loadStatus = new Array(imageUrls.length).fill(false);
-
-    imageUrls.forEach((url, i) => {
-      const img = new Image();
-      img.src = url;
-      img.onload = () => {
-        loadStatus[i] = true;
-        setLoaded([...loadStatus]); // trigger re-render for newly loaded image
-      };
-    });
-  }, [imageUrls]);
 
   useEffect(() => {
+    if (imageUrls.length === 0) return;
+
     const intervalId = setInterval(() => {
-      nextSlide();
+      setCurrentIndex((prev) => (prev + 1) % imageUrls.length);
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, [currentIndex]);
+  }, [imageUrls]); // ✅ only reset when imageUrls change
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % imageUrls.length);
@@ -39,19 +27,19 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
   };
 
   return (
-    <div className="sm:max-w-6xl- mx-auto">
+    <div className="sm:max-w-6xl mx-auto">
       <div className="relative">
-        <div className="w-full  relative sm:h-[350px] h-[200px]  border sm:rounded-lg  overflow-hidden">
+        <div className="w-full relative sm:h-[350px] h-[200px] border sm:rounded-lg overflow-hidden">
           {imageUrls.map((src, index) => (
             <img
               key={index}
               src={
                 src
-                  ? src.replace("/upload/", "/upload/w_500,f_auto/")
+                  ? src.replace("/upload/", "/upload/w_1000,f_auto/") // bigger size for banners
                   : "/images/default-product.png"
               }
               alt={`Banner ${index + 1}`}
-              className={`absolute top-0 left-0 w-full sm:h-[350px] h-[200px] transition-opacity duration-500 ${
+              className={`absolute top-0 left-0 w-full sm:h-[350px] h-[200px] object-cover transition-opacity duration-700 ${
                 index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             />
@@ -61,7 +49,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute z-10 sm:left-6 left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-10 p-1 rounded-full"
+          className="absolute z-10 sm:left-6 left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-30 p-2 rounded-full text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +68,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
         </button>
         <button
           onClick={nextSlide}
-          className="absolute z-10 sm:right-6 right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-10 p-1 rounded-full"
+          className="absolute z-10 sm:right-6 right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-30 p-2 rounded-full text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -97,6 +85,18 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
             />
           </svg>
         </button>
+      </div>
+
+      {/* Dots */}
+      <div className="flex hidden justify-center mt-3 space-x-2">
+        {imageUrls.map((_, i) => (
+          <span
+            key={i}
+            className={`h-2 w-2 rounded-full ${
+              i === currentIndex ? "bg-black" : "bg-gray-400"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );

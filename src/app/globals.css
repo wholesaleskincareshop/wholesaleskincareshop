@@ -157,7 +157,7 @@ html, body {
 
 .sliding-track {
   display: inline-flex;
-  animation: slide-loop 300s linear infinite;
+  animation: slide-loop 500s linear infinite;
 }
 
 .two-line-clamp {
