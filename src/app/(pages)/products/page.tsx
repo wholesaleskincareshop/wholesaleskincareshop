@@ -1,3 +1,4 @@
+import WhatsAppButton from "@/app/WhatsAppButton";
 import Overview from "@/components/Products/Overview";
 import React, { Suspense } from "react";
 
@@ -11,6 +12,7 @@ function Products() {
       }
     >
       <Overview />
+      <WhatsAppButton />
     </Suspense>
   );
 }

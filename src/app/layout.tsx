@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import NetworkStatusChecker from "./NetworkStatusChecker";
 import { Toaster } from "react-hot-toast"; // Import Toaster
 import Script from "next/script";
+import WhatsAppButton from "./WhatsAppButton";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

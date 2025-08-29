@@ -3,6 +3,7 @@ import React from "react";
 import { Metadata } from "next";
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import WhatsAppButton from "@/app/WhatsAppButton";
 
 // Define dynamic metadata
 export async function generateMetadata({
@@ -71,6 +72,7 @@ export default async function ProductDetail({
   return (
     <div className="pt-[5000px]- min-h-screen">
       <Overview />
+      <WhatsAppButton />
     </div>
   );
 }
