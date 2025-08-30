@@ -58,7 +58,7 @@ function BlogIntro() {
         data-aos="fade-up"
       >
         <Header3>
-          Our <span className="text-primary">Skincare</span> Blog
+          Our <span className="text-primary-">Skincare</span> Blog
         </Header3>
         <Paragraph1 className="max-w-[883px] text-center">
           Explore expert insights, wholesale tips, and skincare guidance

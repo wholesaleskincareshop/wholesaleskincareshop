@@ -74,7 +74,11 @@ export default function Overview() {
         />
         <div className="flex w-full justify-between items-center mb-4">
           <div>
-            <Header4>{selectedCategoryName || "All Products"}</Header4>
+            {searchQuery ? (
+              <Header4>Search Results for "{searchQuery}"</Header4>
+            ) : (
+              <Header4>{selectedCategoryName || "All Products"}</Header4>
+            )}{" "}
           </div>
           <FilterMenu
             isOpen={state.isOpen}
