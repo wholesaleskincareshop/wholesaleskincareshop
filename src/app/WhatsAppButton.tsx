@@ -17,12 +17,12 @@ const WhatsAppButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-5 right-5 z-[99]  hover:bg-gray-100 text-white p-2 sm:p-4 bg-white rounded-full shadow-lg flex items-center justify-center transition-transform transform hover:scale-110"
+      className="fixed bottom-5 right-5 z-[99]  hover:bg-gray-100 text-white p-3 sm:p-4 bg-white rounded-full shadow-lg flex items-center justify-center transition-transform transform hover:scale-110"
     >
       <img
         src="https://res.cloudinary.com/dqziqldkb/image/upload/v1756495306/whatsapp_1_bpom4z.png"
               alt=""
-              className="h-[30px] sm:h-[50px]"
+              className="h-[40px] sm:h-[50px]"
       />
     </button>
   );
