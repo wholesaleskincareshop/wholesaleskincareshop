@@ -41,11 +41,12 @@ export function useProductFetch({
   setHasMore,
 }: any) {
   const fetchProducts = useCallback(
-    async (isInitialLoad = false) => {
+    async (isInitialLoad = false, searchQuery: string | null = null) => {
       if (isLoadingMore) return;
       setIsLoadingMore(true);
 
       try {
+        // 🟢 Normal category/infinite scroll query
         const productsQuery = query(
           collection(db, "products"),
           ...(selectedCategory
@@ -58,11 +59,19 @@ export function useProductFetch({
 
         const snapshot = await getDocs(productsQuery);
 
-        const productsData = snapshot.docs.map((doc) => ({
+        let productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-          createdAt: doc.data().createdAt.toDate(),
+          createdAt: doc.data().createdAt?.toDate?.() ?? null,
         })) as Product[];
+
+        // 🔎 Client-side search by letters (case-insensitive)
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          productsData = productsData.filter((p) =>
+            p.name?.toLowerCase().includes(q)
+          );
+        }
 
         if (isInitialLoad) {
           setProducts(productsData);
@@ -72,12 +81,10 @@ export function useProductFetch({
           setDisplayedProducts((prev: Product[]) => [...prev, ...productsData]);
         }
 
-        // 🟢 Important: only set lastDoc if there are docs
         if (snapshot.docs.length > 0) {
           setLastDoc(snapshot.docs[snapshot.docs.length - 1]);
         }
 
-        // 🟢 Optional: detect if there's no more to load
         if (snapshot.docs.length < PRODUCTS_PER_PAGE) {
           setHasMore?.(false);
         } else {
@@ -103,4 +110,3 @@ export function useProductFetch({
 
   return fetchProducts;
 }
-  

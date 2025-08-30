@@ -1,44 +1,48 @@
 "use client";
 
-import React, { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import LoaderOverlay from "./others/LoaderOverlay";
-import SectionScroller from "./others/SectionScroller";
 import FilterMenu from "./others/FilterMenu";
 import ProductGrid from "./others/ProductGrid";
 import CategorySelector from "./CategorySelector";
-import SearchBar from "./SearchBar";
-
-
 import { useOverviewState } from "./others/OverviewState";
 import { useCategoryFetch, useProductFetch } from "./others/OverviewFetch";
-import { useSearchFilter, useActiveFilter } from "./others/OverviewFilters";
+import { useActiveFilter } from "./others/OverviewFilters";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { filters, sections } from "./others/constants";
-import { Header3, Header4, Header5 } from "../Text";
-
+import { filters } from "./others/constants";
+import { Header4 } from "../Text";
 
 export default function Overview() {
   const state = useOverviewState();
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get("search");
+  const pathname = usePathname();
 
-  useCategoryFetch(state.setCategories);
   const fetchProducts = useProductFetch(state);
+  useCategoryFetch(state.setCategories);
+
+  const searchQuery = searchParams.get("search");
 
   const [selectedCategoryName, setSelectedCategoryName] = useState<
     string | null
   >(null);
 
-  React.useEffect(() => {
-    fetchProducts(true);
-  }, [state.selectedCategory]);
+  // ✅ Run when query or path changes
+  useEffect(() => {
+    fetchProducts(true, searchQuery);
+  }, [pathname, searchParams]);
 
-  React.useEffect(() => {
+  // ✅ Run when category changes
+  useEffect(() => {
+    fetchProducts(true, searchQuery);
+  }, [state.selectedCategory, searchQuery]);
+
+  // Infinite scroll observer
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) fetchProducts();
+        if (entries[0].isIntersecting) fetchProducts(false, searchQuery);
       },
       { rootMargin: "100px", threshold: 0.1 }
     );
@@ -49,12 +53,11 @@ export default function Overview() {
       if (state.observerRef.current)
         observer.unobserve(state.observerRef.current);
     };
-  }, [fetchProducts, state.observerRef]);
+  }, [fetchProducts, state.observerRef, searchQuery]);
 
-  useSearchFilter(searchQuery, state.products, state.setDisplayedProducts);
   useActiveFilter(state);
 
-  React.useEffect(() => {
+  useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
@@ -62,42 +65,30 @@ export default function Overview() {
     <div className="relative">
       <LoaderOverlay loading={state.loading} />
       <div className="container1 min-h-screen py-[24px] xl:py-[70px] pt-[70px] text-p_black">
-        <div className="">
-          <div className="">
-            {" "}
-            {/* <div className="mb-4 xl:hidden pt-2">
-              <SearchBar />
-            </div> */}
-            {/* <SectionScroller
-              sections={sections}
-              setActiveFilter={state.setActiveFilter}
-            /> */}
-            <CategorySelector
-              categories={state.categories}
-              selectedCategory={state.selectedCategory}
-              setSelectedCategory={state.setSelectedCategory}
-              selectedCategoryName={setSelectedCategoryName}
-              closeMenu={() => state.setIsCOpen(false)}
-            />
-            <div className="flex w-full justify-between items-center mb-4">
-              <div>
-                <Header4>{selectedCategoryName || "All Products"}</Header4>
-              </div>{" "}
-              <FilterMenu
-                isOpen={state.isOpen}
-                setIsOpen={state.setIsOpen}
-                filters={filters}
-                setActiveFilter={state.setActiveFilter}
-              />
-            </div>
-            <ProductGrid
-              displayedProducts={state.displayedProducts}
-              searchQuery={searchQuery || ""}
-              isLoadingMore={state.isLoadingMore}
-              observerRef={state.observerRef}
-            />
+        <CategorySelector
+          categories={state.categories}
+          selectedCategory={state.selectedCategory}
+          setSelectedCategory={state.setSelectedCategory}
+          selectedCategoryName={setSelectedCategoryName}
+          closeMenu={() => state.setIsCOpen(false)}
+        />
+        <div className="flex w-full justify-between items-center mb-4">
+          <div>
+            <Header4>{selectedCategoryName || "All Products"}</Header4>
           </div>
+          <FilterMenu
+            isOpen={state.isOpen}
+            setIsOpen={state.setIsOpen}
+            filters={filters}
+            setActiveFilter={state.setActiveFilter}
+          />
         </div>
+        <ProductGrid
+          displayedProducts={state.displayedProducts}
+          searchQuery={searchQuery || ""}
+          isLoadingMore={state.isLoadingMore}
+          observerRef={state.observerRef}
+        />
       </div>
     </div>
   );
