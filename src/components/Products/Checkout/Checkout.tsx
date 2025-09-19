@@ -419,7 +419,7 @@ const Checkout: React.FC<CheckoutProps> = ({
     customizations: {
       title: "Wholesale Skincare Shop Payment",
       description: "Payment for items in cart",
-      logo: "https://res.cloudinary.com/dtipo8fg3/image/upload/v1732334982/favicon_hpd5wv.png",
+      logo: "https://res.cloudinary.com/dqziqldkb/image/upload/v1752326559/6010238764733025601_giaz9n.jpg",
     },
   };
 
