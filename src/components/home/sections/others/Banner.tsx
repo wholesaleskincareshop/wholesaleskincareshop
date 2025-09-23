@@ -35,7 +35,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ imageUrls }) => {
               key={index}
               src={
                 src
-                  ? src.replace("/upload/", "/upload/w_1000,f_auto/") // bigger size for banners
+                  ? src.replace("/upload/", "/upload/w_1500,f_auto/") // bigger size for banners
                   : "/images/default-product.png"
               }
               alt={`Banner ${index + 1}`}

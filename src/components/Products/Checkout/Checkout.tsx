@@ -253,7 +253,7 @@ const Checkout: React.FC<CheckoutProps> = ({
         lga?.shippingFee ?? 0
       );
     }
-  }, [selectedCountryCode, states, totalProductWeight, lgas,]);
+  }, [selectedCountryCode, states, totalProductWeight, lgas]);
 
   const handleNext = (values: typeof shippingInfo) => {
     setShippingInfo(values);
@@ -410,7 +410,7 @@ const Checkout: React.FC<CheckoutProps> = ({
     tx_ref: Date.now(),
     amount: totalBillWave,
     currency: currencyWave,
-    payment_options: "card,mobilemoney,ussd",
+    payment_options: "banktransfer",
     customer: {
       email,
       phone_number: phoneNumber,

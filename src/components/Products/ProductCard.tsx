@@ -62,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <Image
                 src={
                   image
-                    ? image.replace("/upload/", "/upload/w_500,f_auto/")
+                    ? image.replace("/upload/", "/upload/w_1500,f_auto/")
                     : "/images/default-product.png"
                 }
                 alt={title}
