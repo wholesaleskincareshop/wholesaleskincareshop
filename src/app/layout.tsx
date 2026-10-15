@@ -8,6 +8,7 @@ import NetworkStatusChecker from "./NetworkStatusChecker";
 import { Toaster } from "react-hot-toast"; // Import Toaster
 import Script from "next/script";
 import WhatsAppButton from "./WhatsAppButton";
+import DomainRedirect from "./DomainRedirectProps";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -209,12 +210,13 @@ export default function RootLayout({
         />
       </head>
       <body className=" bg-[#f1efe8]-">
-        <Toaster />
+        <DomainRedirect targetDomain="https://wholesaleskincareshop.ng/" />
+        {/* <Toaster />
         <NetworkStatusChecker />
 
         <Navbar />
         {children}
-        <Footer />
+        <Footer /> */}
       </body>
     </html>
   );
